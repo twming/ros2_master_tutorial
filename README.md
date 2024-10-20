@@ -11,12 +11,14 @@ https://www.virtualbox.org/wiki/Downloads
 ```
 https://ubuntu.com/download
 ```
-![Ubuntu](http://github.com/twming/ros2_master_tutorial/blob/main/img/ubuntu.png)
+![Ubuntu](https://github.com/twming/ros2_master_tutorial/blob/main/img/ubuntu.png)
+
 3. Install ROS Humble in your Ubuntu
 ```
 https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
-![ROS](http://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png)
+![ROS](https://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png)
+
 > [!TIP]
 > How to verify your ROS installation is working?
 
