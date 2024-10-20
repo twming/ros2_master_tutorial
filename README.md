@@ -30,7 +30,7 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 
 ## Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
-1. Create autocar package, create "urdf" folder, then add "autocar.xacro" file to the folder.
+1. Create "autocar_description" package, create "urdf" folder, then add "autocar.xacro" file to the folder.
 2. Define the link of robot, including a box (body) and two cylinders (wheel)
 ```
 <?xml version="1.0"?>
@@ -340,4 +340,61 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
+> [!TIP]
+> How do you test your turtlebot3 burger?
+
+```
+ros2 launch turtlebot3_bringup robot.launch.py
+```
+
 ## Exercise 4: Robot Control
+
+Now you have turtlebot3 burger (with Raspberry Pi) and the Ubuntu VM. You need to control the robot to move forward and stop when Lidar detected obstacle 50 cm in front (0 degree).
+1. Install ros-humble-turltebot3 packages
+```
+sudo apt install ros-humble-turtlebot3
+```
+2. Create "autocar_control" package, put in below code.
+```
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import Twist
+
+class ObstacleAvoidanceNode(Node):
+    def __init__(self):
+        super().__init__('obstacle_avoidance_node')
+        self.publisher = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.subscription = self.create_subscription(
+            LaserScan, '/scan', self.scan_callback, 10)
+        self.move = Twist()
+
+    def scan_callback(self, msg):
+        print('s1 [0]:', msg.ranges[0])
+        
+        if msg.ranges[0] > 0.5:
+            self.move.linear.x = 0.3
+            self.move.angular.z = 0.0
+        else:
+            self.move.linear.x = 0.0
+            self.move.angular.z = 0.0
+        
+        self.publisher.publish(self.move)
+
+def main(args=None):
+    rclpy.init(args=args)
+    obstacle_avoidance_node = ObstacleAvoidanceNode()
+    rclpy.spin(obstacle_avoidance_node)
+    obstacle_avoidance_node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+3. Build and run the python script.
+
+> [!TIP]
+> Does turtlebot3 burger able to detect obstacle?
+
