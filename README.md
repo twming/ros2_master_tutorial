@@ -13,6 +13,9 @@ https://ubuntu.com/download
 ```
 https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
+> [!TIP]
+> How to verify your ROS installation is working?
+
 ## Exercise 2: Simulate Robot in ROS
 ## Exercise 3: Robot Hardware and Software Installation
 ## Exercise 4: Robot Control
