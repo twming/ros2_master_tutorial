@@ -273,7 +273,12 @@ ros2 run rviz2 rviz2
     <xacro:include filename="my_robot_gazebo.xacro" />
 </robot>
 ```
-
+5. Launch Gazebo Simulation
+```
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro my_robot.xacro)"
+ros2 launch gazebo_ros gazebo_launch.py
+ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
+```
 ## Exercise 3: Raspberry Pi Turtlebot3 Setup
 
 1. Download "Raspberry Pi Imager" and install it.
