@@ -154,5 +154,108 @@ wheel_length = 0.05
 > [!TIP]
 > Can you visualize your robot in ROS RViz? TF Tree, Joint_State.
 
+
+### Optional:
+1. Create common_properties.xacro file, add below for inertial simulation.
+```
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="box_inertia" params="m l w h xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <mass value="${m}" />
+            <inertia ixx="${(m/12)*(h*h+l*l)}" ixy="0" ixz="0"
+                iyy="${(m/12)*(w*w+l*l)}" iyz="0"
+                izz="${(m/12)*(w*w+h*h)}" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="sphere_inertia" params="m r xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <mass value="${m}" />
+            <inertia ixx="${(2*m/5)*(r*r)}" ixy="0" ixz="0"
+                iyy="${(2*m/5)*(r*r)}" iyz="0"
+                izz="${(2*m/5)*(r*r)}" /> 
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="cylinder_inertia" params="m r h xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <mass value="${m}" />
+            <inertia ixx="${(m/12)*(3*r*r+h*h)}" ixy="0" ixz="0"
+                iyy="${(m/12)*(3*r*r+h*h)}" iyz="0"
+                izz="${(m/1)*(r*r)}" /> 
+        </inertial>
+    </xacro:macro>
+
+</robot>
+```
+2. Add below lines to the respective object after </collisio> tag.
+```
+<xacro:box_inertia m="5.0" l="${base_length}" w="${base_width}" h="${base_height}" xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
+<xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
+```
+3. Create my_robot_gazebo.xacro file, add below for Gazebo differential drive simulation.
+```
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="right_wheel_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="left_wheel_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="caster_wheel_link">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.1" />
+        <mu2 value="0.1" />
+    </gazebo>
+
+    <gazebo>
+        <plugin name="diff_drive_control" filename="libgazebo_ros_diff_drive.so">
+
+            <!-- Update rate in Hz -->
+            <update_rate>50</update_rate>
+
+            <!-- wheels -->
+            <left_joint>base_left_wheel_joint</left_joint>
+            <right_joint>base_right_wheel_joint</right_joint>
+
+            <!-- kinematics -->
+            <wheel_separation>0.45</wheel_separation>
+            <wheel_diameter>0.2</wheel_diameter>
+
+            <!-- output -->
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+            <odometry_topic>odom</odometry_topic>
+            <odometry_frame>odom</odometry_frame>
+            <robot_base_frame>base_footprint_link</robot_base_frame>
+
+        </plugin>
+    </gazebo>
+</robot>
+```
+4. Include below lines in the autocar.xacro file
+```
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
+    <xacro:include filename="common_properties.xacro" />
+    ....
+    <xacro:include filename="my_robot_gazebo.xacro" />
+</robot>
+```
+
 ## Exercise 3: Robot Hardware and Software Installation
 ## Exercise 4: Robot Control
