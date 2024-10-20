@@ -110,6 +110,7 @@ You learn how to describe robot in URDF, create a URDF for below robots and laun
 </robot>
 ```
 3. The dimension of body and wheels are:
+
 ![Ubuntu](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
 
 ```
