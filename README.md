@@ -5,17 +5,18 @@ You need to setup a virtual box and install ROS for your robot development
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```
-![Virtual Box](http://github.com/twming/ros2_master_tutorial/img/virtualbox.png)
+![Virtual Box](https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png)
+
 2. Setup Ubuntu 22.04 in your virtual box
 ```
 https://ubuntu.com/download
 ```
-![Ubuntu](http://github.com/twming/ros2_master_tutorial/img/ubuntu.png)
+![Ubuntu](http://github.com/twming/ros2_master_tutorial/blob/main/img/ubuntu.png)
 3. Install ROS Humble in your Ubuntu
 ```
 https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
-![ROS](http://github.com/twming/ros2_master_tutorial/img/ros.png)
+![ROS](http://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png)
 > [!TIP]
 > How to verify your ROS installation is working?
 
