@@ -24,7 +24,7 @@ https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 
 ## Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
-1. Create autocar package, with urdf folder.
+1. Create autocar package, create "urdf" folder, then add "autocar.xacro" file to the folder.
 2. Define the link of robot, including a box (body) and two cylinders (wheel)
 ```
 <?xml version="1.0"?>
