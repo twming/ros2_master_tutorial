@@ -162,7 +162,7 @@ wheel_length = 0.05
 
 ```
 cd ~/dev_ws/src/autocar_description/urdf
-ros2 run robot_state_publisher robot_state_publisher --ros-args  –p robot_description:="$(xacro autocar.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
 ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
