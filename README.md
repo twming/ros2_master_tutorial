@@ -19,8 +19,14 @@ https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
 ![ROS](https://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png)
 
+4. Install ROS packages
+```
+sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-publisher ros-humble-xacro
+```
+
 > [!TIP]
 > How to verify your ROS installation is working?
+
 
 ## Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
@@ -111,7 +117,7 @@ You learn how to describe robot in URDF, create a URDF for below robots and laun
 ```
 3. The dimension of body and wheels are:
 
-![Ubuntu](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
+![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
 
 ```
 base_length = 0.6
@@ -154,6 +160,12 @@ wheel_length = 0.05
 > [!TIP]
 > Can you visualize your robot in ROS RViz? TF Tree, Joint_State.
 
+```
+cd ~/dev_ws/src/autocar_description/urdf
+ros2 run robot_state_publisher robot_state_publisher --ros-args  –p robot_description:="$(xacro autocar.xacro)"
+ros2 run joint_state_publisher_gui joint_state_publisher_gui
+ros2 run rviz2 rviz2
+```
 
 ### Optional:
 1. Create common_properties.xacro file, add below for inertial simulation.
@@ -257,5 +269,75 @@ wheel_length = 0.05
 </robot>
 ```
 
-## Exercise 3: Robot Hardware and Software Installation
+## Exercise 3: Raspberry Pi Turtlebot3 Setup
+
+1. Download "Raspberry Pi Imager" and install it.
+```
+https://www.raspberrypi.com/software/
+```
+![Raspberry Pi](https://github.com/twming/ros2_master_tutorial/blob/main/img/raspberrypi.png)
+
+2. Use the SD-Card provided, install Ubuntu 22.04 server on the card using "Raspberry Pi Imager"
+3. Connect up Raspberry Pi to TV monitor, keyboard, mouse. Boot up the into Ubuntu.
+4. Edit the sshd_config file to set the ssh QoS to best effort
+```
+sudo nano /etc/ssh/sshd_config
+```
+Input below line at the bottom of the file
+```
+IPQoS cs0 cs0
+```
+5. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
+Enable UTF-8 locale support
+```
+locale  # check for UTF-8
+
+sudo apt update && sudo apt install locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+locale  # verify settings
+```
+Enable Universe repository in Ubuntu
+```
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+```
+Add the ROS2 GPG key with apt
+```
+sudo apt update && sudo apt install curl -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+```
+Add the repository to Ubuntu source list
+```
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+```
+Update the repository
+```
+sudo apt update
+```
+Then install ros-humble-ros-base and ros-humble-turtlebot3-bringup
+```
+sudo apt install ros-humble-ros-base
+sudo apt install ros-humble-turtlebot3-bringup
+```
+6. Input the environment data to the .bashrc
+```
+echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
+echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
+echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
+echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
+```
+Source and run the .bashrc 
+```
+source .bashrc
+```
+7. Setup the USB and OpenCR communication
+```
+sudo cp `ros2 pkg prefix turtlebot3_bringup`/share/turtlebot3_bringup/script/99-turtlebot3-cdc.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
 ## Exercise 4: Robot Control
