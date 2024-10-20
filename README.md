@@ -279,6 +279,8 @@ ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_descrip
 ros2 launch gazebo_ros gazebo_launch.py
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
+![Gazebo](https://github.com/twming/ros2_master_tutorial/blob/main/img/gazebo.png)
+
 ## Exercise 3: Raspberry Pi Turtlebot3 Setup
 
 1. Download "Raspberry Pi Imager" and install it.
