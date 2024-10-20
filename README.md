@@ -193,7 +193,7 @@ wheel_length = 0.05
 
 </robot>
 ```
-2. Add below lines to the respective object after </collisio> tag.
+2. Add below lines to the respective object after "collision" tag.
 ```
 <xacro:box_inertia m="5.0" l="${base_length}" w="${base_width}" h="${base_height}" xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
 <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
