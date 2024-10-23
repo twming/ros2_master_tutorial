@@ -299,6 +299,14 @@ Input below line at the bottom of the file
 ```
 IPQoS cs0 cs0
 ```
+Edit the sshd_config setting
+```
+sudo nano /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+```
+Change the PasswordAuthentication from 'no' to 'yes'
+```
+PasswordAuthentication yes
+```
 5. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
 Enable UTF-8 locale support
 ```
