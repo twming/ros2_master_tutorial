@@ -366,6 +366,23 @@ sudo udevadm trigger
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
 ```
+```
+ros2 launch slam_toolbox online_async_launch.py
+```
+```
+ros2 run nav2_map_server map_saver_cli -f ~/my_map
+```
+```
+ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=/root/map.yaml
+```
+```
+ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz
+```
+```
+
+
+```
+
 
 ## Exercise 4: Robot Control
 
