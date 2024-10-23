@@ -363,6 +363,7 @@ sudo udevadm trigger
 > [!TIP]
 > How do you test your turtlebot3 burger?
 
+#### SLAM
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
 ```
@@ -372,8 +373,9 @@ ros2 launch slam_toolbox online_async_launch.py
 ```
 ros2 run nav2_map_server map_saver_cli -f ~/my_map
 ```
+#### Navigation
 ```
-ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=/root/map.yaml
+ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=/root/my_map.yaml
 ```
 ```
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz
@@ -382,6 +384,7 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/
 ## Exercise 4: Robot Control
 
 Now you have turtlebot3 burger (with Raspberry Pi) and the Ubuntu VM. You need to control the robot to move forward and stop when Lidar detected obstacle 50 cm in front (0 degree).
+#### Autonomous Exploring
 1. Install ros-humble-turltebot3 packages
 ```
 sudo apt install ros-humble-turtlebot3
@@ -431,8 +434,9 @@ if __name__ == '__main__':
 > Does turtlebot3 burger able to detect obstacle?
 
 
-Send Position data to IoT Cloud. 
-2. Create a python file, called "iot.py" 
+#### Send Position data to IoT Cloud.
+
+1. Create a python file, called "iot.py" 
 ```
 #!/usr/bin/env python3
 import rclpy
@@ -474,8 +478,9 @@ def main(args=None):
 if __name__ == '__main__':
     main()
 ```
-
-Control turtlebot3 using hand finger. 
+2. Build and run with navigation map and path planning
+ 
+#### Control turtlebot3 using hand finger. 
 1. Check your VM camera
 ```
 cd C:\Program Files\Oracle\VirtualBox
