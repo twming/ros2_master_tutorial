@@ -458,7 +458,7 @@ class IoTNode(Node):
 
     def send_position_command(self):
         response=urlopen('https://api.thingspeak.com/update?api_key='
-                         +'2AN9DIXOJ59CLJAR'
+                         +'____________'
                          +'&field1='+str(self.x)
                          +'field2'+str(self.y))
         self.get_logger().info("Data Sent Status : %s" % response.msg)
