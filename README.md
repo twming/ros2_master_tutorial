@@ -430,6 +430,51 @@ if __name__ == '__main__':
 > [!TIP]
 > Does turtlebot3 burger able to detect obstacle?
 
+
+Send Position data to IoT Cloud. 
+2. Create a python file, called "iot.py" 
+```
+#!/usr/bin/env python3
+import rclpy
+from urllib.request import urlopen
+from rclpy.node import Node
+from nav_msgs.msg import Odometry
+
+class IoTNode(Node):
+    def __init__(self):
+        super().__init__('IoTNode')
+        self.x=0.0
+        self.y=0.0
+        self.timer = self.create_timer(2.0, self.send_position_command)
+        self.subscription = self.create_subscription(
+            Odometry,
+            '/odom',
+            self.record_position_callback,
+        10)
+
+    def send_position_command(self):
+        response=urlopen('https://api.thingspeak.com/update?api_key='
+                         +'2AN9DIXOJ59CLJAR'
+                         +'&field1='+str(self.x)
+                         +'field2'+str(self.y))
+        self.get_logger().info("Data Sent Status : %s" % response.msg)
+
+    def record_position_callback(self, odom:Odometry):
+        self.x=odom.pose.pose.position.x
+        self.y=odom.pose.pose.position.y
+        #self.get_logger().info("Pose: ("+str(self.x)+","+str(self.y)+")")
+
+def main(args=None):
+    rclpy.init(args=args)
+    iotnode = IoTNode()
+    rclpy.spin(iotnode)
+    iotnode.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
 Control turtlebot3 using hand finger. 
 1. Check your VM camera
 ```
