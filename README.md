@@ -304,6 +304,11 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
         </visual>        
     </link>
 ```
+```
+    <gazebo reference="laser_link"><material>Gazebo/Red</material></gazebo>
+    <gazebo reference="camera_link"><material>Gazebo/Blue</material></gazebo>
+    <gazebo reference="imu_link"><material>Gazebo/Red</material></gazebo>
+```
 
 ```
     <joint name="base_laser_joint" type="fixed">
