@@ -284,14 +284,20 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ### Optional 2
 
 ```
-    <link name="camera_link">
+    <link name="laser_link">
         <visual>
             <geometry>
-                <box size="0.005 0.03 0.03"/>
+                <cylinder radius="0.02" length="0.01"/>
             </geometry>
-            <origin xyz="0 0 0.015" rpy="0 0 0" />
-            <material name="blue"/>
+            <origin xyz="0 0 0.005" rpy="0 0 0" />
+            <material name="red"/>
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.01" length="0.01"/>
+            </geometry>
+        </collision>
+        <xacro:cylinder_inertia m="0.1" r="0.05" h="0.04" xyz="0 0 0" rpy="0 0 0" />
     </link>
 
     <link name="imu_link">
