@@ -573,7 +573,7 @@ class IoTNode(Node):
         response=urlopen('https://api.thingspeak.com/update?api_key='
                          +'____________'
                          +'&field1='+str(self.x)
-                         +'field2'+str(self.y))
+                         +'&field2'+str(self.y))
         self.get_logger().info("Data Sent Status : %s" % response.msg)
 
     def record_position_callback(self, odom:Odometry):
