@@ -167,7 +167,7 @@ ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
 
-### Optional:
+### Optional 1:
 1. Create common_properties.xacro file, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
@@ -280,6 +280,48 @@ ros2 launch gazebo_ros gazebo_launch.py
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
 ![Gazebo](https://github.com/twming/ros2_master_tutorial/blob/main/img/gazebo.png)
+
+### Optional 2
+
+```
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size="0.005 0.03 0.03"/>
+            </geometry>
+            <origin xyz="0 0 0.015" rpy="0 0 0" />
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <link name="imu_link">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.005"/>
+            </geometry>
+            <origin xyz="0 0 0.015" rpy="0 0 0" />
+            <material name="red"/>
+        </visual>        
+    </link>
+```
+
+```
+    <joint name="base_laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="laser_link"/>
+        <origin xyz="${-base_length/3.0} 0 ${base_height}" rpy="0 0 0"/>
+    </joint>
+ 
+    <joint name="base_imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0 0 -0.0025" rpy="0 0 0" />
+    </joint>
+```
+```
+ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
+```
+
 
 ## Exercise 3: Raspberry Pi Turtlebot3 Setup
 
