@@ -277,7 +277,7 @@ ros2 run rviz2 rviz2
 ```
 5. Launch Gazebo Simulation
 ```
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro my_robot.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
 ros2 launch gazebo_ros gazebo_launch.py
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
@@ -414,7 +414,7 @@ angular:
 ```
 5. Launch Gazebo Simulation with turtlebot3_world.world
 ```
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro my_robot.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
 ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot -x 2.0 -y 0.5
 ```
