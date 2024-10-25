@@ -416,12 +416,12 @@ angular:
 ```
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
 ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
-ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot -x 2.0 -y 0.5
+ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot -x -2.0 -y -0.5
 ```
 6. Move the robot
 ```
 ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "linear:
-  x: 0.05
+  x: 0.08
   y: 0.0
   z: 0.0
 angular:
