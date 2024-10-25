@@ -4,7 +4,7 @@
 - [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros)
   - [Optional 1: differential drive](#optional-1-differential-drive)
   - [Optional 2: lidar and imu](#optional-2-lidar-and-imu)
-- [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise3-raspberry-pi-turtlebot3-setup)
+- [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
   - [SLAM](#slam)
   - [Navigation](#navigation)
 - [Exercise 4: Robot Control](#exercise-4-robot-control)
