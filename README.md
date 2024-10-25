@@ -1,12 +1,17 @@
 # Mastering ROS Essential
 
-Section
-- [ Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
-[ Exercise 1: ROS Development Setup](#optional-1)
-[ Exercise 1: ROS Development Setup](#optional-1)
-[ Exercise 1: ROS Development Setup](#optional-1)
-[ Exercise 1: ROS Development Setup](#optional-1)
-[ Exercise 1: ROS Development Setup](#optional-1)
+- [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
+- [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros)
+  - [Optional 1:](#optional-1)
+  - [Optional 2:](#optional-2)
+- [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise3-raspberry-pi-turtlebot3-setup)
+  - [SLAM](#slam)
+  - [Navigation](#navigation)
+- [Exercise 4: Robot Control](#exercise-4-robot-control)
+  - [Autonomous Exploring](#autonomous-exploring)
+  - [Send Position data to IoT Cloud](#send-position-data-to-iot-cloud)
+  - [Control turtlebot3 using hand gesture](#control-turtlebot3-using-hand-gesture)
+
 
 ## Exercise 1: ROS Development Setup
 You need to setup a virtual box and install ROS for your robot development
@@ -178,7 +183,7 @@ ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
 
-### Optional 1:
+### Optional 1: diffential drive
 1. Create common_properties.xacro file, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
@@ -306,7 +311,7 @@ angular:
   z: 0.2"
 ```
 
-### Optional 2
+### Optional 2: lidar and imu
 1. Add laser_link and imu_link to autocar.xacro file.
 ```
     <link name="laser_link">
@@ -592,7 +597,7 @@ if __name__ == '__main__':
 > Does turtlebot3 burger able to detect obstacle?
 
 
-#### Send Position data to IoT Cloud.
+#### Send Position data to IoT Cloud
 
 1. Create a python file, called "iot.py" 
 ```
@@ -638,7 +643,7 @@ if __name__ == '__main__':
 ```
 2. Build and run with navigation map and path planning
  
-#### Control turtlebot3 using hand finger. 
+#### Control turtlebot3 using hand gesture
 1. Check your VM camera
 ```
 cd C:\Program Files\Oracle\VirtualBox
