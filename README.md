@@ -656,14 +656,6 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
-##### Workshop Day 4 - Interaction with Robots via Hand Gesture #####
-##### to be inputed on ***right*** side of camera #####
-##### to minimize background noise, setup a blue background #####
-
-##### WITH Obstacle Avoidance Algorithm #####
-##### Template Set; Look for "To be COMPLETED" #####
-
-# Import relevant libraries
 import cv2,time
 import math
 import random
@@ -681,51 +673,19 @@ allowance = 0.3
 m=Twist()
 
 # function to collect laser scan data
-#################### To be COMPLETED ####################
-
 def callback(msg):
 	global scan0, scan45, scan90, scan135, scan180, scan225, scan270, scan315
-	#print('==== Laser Scan Details =====')
-	#print('s1 [0]')
-	#print msg.ranges[0]
 	scan0 = msg.ranges[0]
-
-	#print('s2 [45]')
-	#print msg.ranges[45]
 	scan45 = msg.ranges[45]
-
-	#print('s3 [90]')
-	#print msg.ranges[90]
 	scan90 = msg.ranges[90]
-
-	#print('s4 [135]')
-	#print msg.ranges[135]
 	scan135 = msg.ranges[135]
-
-	#print('s5 [180]')
-	#print msg.ranges[180]
 	scan180 = msg.ranges[180]
-
-	#print('s6 [225]')
-	#print msg.ranges[225]
 	scan225 = msg.ranges[225]
-
-	#print('s7 [270]')
-	#print msg.ranges[270]
 	scan270 = msg.ranges[270]
-
-	#print('s8 [315]')
-	#print msg.ranges[315]
 	scan315 = msg.ranges[315]
 
-############################################################
-
-
 # function to clear TB3 away from obstacles
-#################### To be COMPLETED ####################
-
 def clearance():
-
 	if scan0 < allowance or scan45 < allowance or scan315 < allowance:
 		m.linear.x = -0.05
 
@@ -747,15 +707,14 @@ node=None
 # Open Camera
 def main(args=None):
 	rclpy.init(args=None)
-    # TODO:
-    # Step1: create a node call 'hand'
-    # Step2: create a publisher, to publish a Twist message to /cmd_vel, with QoS =1
-    # Step3: create a subscriber, to subscribe a LaserScan message, "callback" function and QoS=10
-    #
-    #
-    #
+        # TODO:
+        # Step1: create a node call 'hand'
+        # Step2: create a publisher, to publish a Twist message to /cmd_vel, with QoS =1
+        # Step3: create a subscriber, to subscribe a LaserScan message, "callback" function and QoS=10
+        #
+        #
+        #
 
-	# m = Twist()
 	capture = cv2.VideoCapture(0)
 
 	print('ONE : FORWARD')
@@ -787,12 +746,12 @@ def main(args=None):
 		# Define Kernel (Filter Matrix or "Slider") for morphological transformation
 		kernel = np.ones((5, 5))
 
-	############ Apply morphological transformations to filter out the background noise ##############
+	        ############ Apply morphological transformations to filter out the background noise ##############
 		# Filtering Sequence: Dilation, Erosion, Closing
 		# Dilation is to gradually enlarge the boundaries of regions of foreground pixels, typically white pixels. As areas of foreground pixels grow in size, holes within those regions become smaller.
 		# Erosion is to erode away the boundaries of regions of foreground pixels, typically white pixels. As areas of foreground pixels shrink in size, holes within those areas become larger.
 		# Closing is simply as a dilation followed by an erosion using the same structuring element for both operations. The effect of this operator is to preserve background regions that have a similar shape to this structuring element, or that can completely contain the structuring element, while eliminating all other regions of background pixels.
-	##################################################################################################
+	        ##################################################################################################
 		
 		dilation = cv2.dilate(mask2, kernel, iterations=1)
 		erosion = cv2.erode(dilation, kernel, iterations=1)
@@ -806,8 +765,6 @@ def main(args=None):
 		# Show threshold image
 		cv2.imshow("Thresholded", thresh)
 		# Find contours
-		#image, contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-		#_, contours, _ = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 		contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
 		try:
@@ -820,7 +777,6 @@ def main(args=None):
 
 			# Find convex hull; the set of pixels included in the smallest convex polygon that surround all input data.
 			hull = cv2.convexHull(contour)
-
 
 			# Draw contour; for our own visualization purposes
 			drawing = np.zeros(crop_image.shape,dtype =  np.uint8)
@@ -859,13 +815,7 @@ def main(args=None):
 				#print ('count_defects:')
 				print (count_defects)
 
-
-	#################### To be COMPLETED ####################
-
 			# TB3 Control Rules
-
-			# sub = rospy.Subscriber('/scan', LaserScan,callback )
-
 			if (scan0 < allowance or  scan45<allowance  or  scan90<allowance or  scan135<allowance  or  scan180<allowance  or  scan225<allowance or  scan270<allowance   or scan315 < allowance) and (scan0 !=0 or  scan45 !=0 or scan90 !=0 or scan135 !=0 or scan180 !=0 or scan225 !=0 or scan270 !=0 or scan315 !=0):
 				m.linear.x = 0.0
 				m.angular.z = 0.0
@@ -874,8 +824,6 @@ def main(args=None):
 				clearance()
 				pub.publish(m)
 				print('Clearing away from obstacles')
-
-	############################################################
 
 			elif count_defects == 0:
 				cv2.putText(frame, "ONE : FORWARD", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2,(0,0,255),2)
@@ -899,10 +847,6 @@ def main(args=None):
 				print('reverse')
 			elif count_defects == 4:
 				cv2.putText(frame, "FIVE", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2,(0,0,255), 2)
-			#else:
-			#	m.linear.x = 0
-			#	m.angular.z = 0
-			#	print('braking')
 				
 			# Show required images
 			pub.publish(m)
@@ -913,7 +857,6 @@ def main(args=None):
 			print('braking due to no input')
 
 			pub.publish(m)
-			
 			pass
 		
 		cv2.imshow("Gesture", frame)
@@ -922,7 +865,6 @@ def main(args=None):
 		if cv2.waitKey(3) == ord('q'):
 			print('Shutting Down!!!')
 			break
-		
 	capture.release()
 
 if __name__=='__main__':
