@@ -285,7 +285,17 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 
 > [!TIP]
 > Control your robot using topic /cmd_vel.
-
+> 
+```
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "linear:
+  x: 0.2
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.2"
+```
 
 ### Optional 2
 1. Add laser_link and imu_link to autocar.xacro file.
@@ -404,7 +414,7 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 5. Launch Gazebo Simulation with turtlebot3_world.world
 ```
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro my_robot.xacro)"
-ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
+ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_house.world
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
 
