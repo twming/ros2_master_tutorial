@@ -1,7 +1,7 @@
 # Mastering ROS Essential
 
 Section
-[Exercise 1: ROS Development Setup](#Exercise-1:-ROS-Development-Setup)
+[Optional 1:](# Optional 1:)
 
 ## Exercise 1: ROS Development Setup
 You need to setup a virtual box and install ROS for your robot development
