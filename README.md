@@ -1,7 +1,7 @@
 # Mastering ROS Essential
 
 Section
-[ Exercise 1: ROS Development Setup](#optional-1)
+- [ Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
 [ Exercise 1: ROS Development Setup](#optional-1)
 [ Exercise 1: ROS Development Setup](#optional-1)
 [ Exercise 1: ROS Development Setup](#optional-1)
