@@ -41,6 +41,7 @@ You learn how to describe robot in URDF, create a URDF for below robots and laun
     <material name="red"><color rgba="0.8 0.0 0.0 1.0"/></material>
 
     <!-- Propoerty parameters -->
+    <xacro:property name="size_ratio" value="___TODO___" />
     <xacro:property name="base_length" value="___TODO___" />
     <xacro:property name="base_width" value="___TODO___" />
     <xacro:property name="base_height" value="___TODO___" />
@@ -120,11 +121,12 @@ You learn how to describe robot in URDF, create a URDF for below robots and laun
 ![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
 
 ```
-base_length = 0.6
-base_width = 0.4
-base_height = 0.2
-wheel_radius = 0.1
-wheel_length = 0.05
+size_ratio = 0.3
+base_length = ${size_ratio*0.6}
+base_width = ${size_ratio*0.4}
+base_height = ${size_ratio*0.2}
+wheel_radius = ${size_ratio*0.1}
+wheel_length = ${size_ratio*0.05}
 ```
 4. Define the joints between the wheel and body
 ```
@@ -215,25 +217,25 @@ ros2 run rviz2 rviz2
 ...
 <xacro:sphere_inertia m="0.5" r="${wheel_radius/2.0}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
 ```
-3. Create my_robot_gazebo.xacro file, add below for Gazebo differential drive simulation.
+3. Create gazebo.xacro file, add below for Gazebo differential drive simulation.
 ```
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <gazebo reference="base_link">
-        <material>Gazebo/Blue</material>
+        <material>Gazebo/Green</material>
     </gazebo>
 
     <gazebo reference="right_wheel_link">
-        <material>Gazebo/Grey</material>
+        <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="left_wheel_link">
-        <material>Gazebo/Grey</material>
+        <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="caster_wheel_link">
-        <material>Gazebo/Grey</material>
+        <material>Gazebo/Red</material>
         <mu1 value="0.1" />
         <mu2 value="0.1" />
     </gazebo>
@@ -270,7 +272,7 @@ ros2 run rviz2 rviz2
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
     <xacro:include filename="common_properties.xacro" />
     ....
-    <xacro:include filename="my_robot_gazebo.xacro" />
+    <xacro:include filename="gazebo.xacro" />
 </robot>
 ```
 5. Launch Gazebo Simulation
@@ -281,8 +283,12 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
 ![Gazebo](https://github.com/twming/ros2_master_tutorial/blob/main/img/gazebo.png)
 
-### Optional 2
+> [!TIP]
+> Control your robot using topic /cmd_vel.
 
+
+### Optional 2
+1. Add laser_link and imu_link to autocar.xacro file.
 ```
     <link name="laser_link">
         <visual>
@@ -310,10 +316,30 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
         </visual>        
     </link>
 ```
+2. Add base_laser_joint and imu_base_imu_joint to autocar.xacro file.
 ```
-    <gazebo reference="laser_link"><material>Gazebo/Red</material></gazebo>
-    <gazebo reference="imu_link"><material>Gazebo/Red</material></gazebo>
+    <joint name="base_laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="laser_link"/>
+        <origin xyz="${-base_length/3.0} 0 ${base_height}" rpy="0 0 0"/>
+    </joint>
+ 
+    <joint name="base_imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0 0 -0.0025" rpy="0 0 0" />
+    </joint>
 ```
+3. Add color for laser and imu link in gazebo.xacro.
+```
+    <gazebo reference="laser_link">
+	<material>Gazebo/Red</material>
+    </gazebo>
+    <gazebo reference="imu_link">
+	<material>Gazebo/Red</material>
+    </gazebo>
+```
+4. Add ros plugin for laser and imu link in gazebo.xacro
 ```
     <gazebo reference="laser_link">
         <sensor name="laser" type="ray">
@@ -339,7 +365,6 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
             </plugin>
         </sensor>
     </gazebo>
-
 
     <gazebo reference="imu_link">
         <sensor name="imu_sensor" type="imu">
@@ -376,23 +401,12 @@ ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
         </sensor>
     </gazebo>
 ```
+5. Launch Gazebo Simulation with turtlebot3_world.world
 ```
-    <joint name="base_laser_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="laser_link"/>
-        <origin xyz="${-base_length/3.0} 0 ${base_height}" rpy="0 0 0"/>
-    </joint>
- 
-    <joint name="base_imu_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="imu_link"/>
-        <origin xyz="0 0 -0.0025" rpy="0 0 0" />
-    </joint>
-```
-```
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro my_robot.xacro)"
 ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
+ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
-
 
 ## Exercise 3: Raspberry Pi Turtlebot3 Setup
 
