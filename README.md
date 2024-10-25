@@ -343,10 +343,11 @@ angular:
 3. Add color for laser and imu link in gazebo.xacro.
 ```
     <gazebo reference="laser_link">
-	<material>Gazebo/Red</material>
+        <material>Gazebo/Red</material>
     </gazebo>
+    
     <gazebo reference="imu_link">
-	<material>Gazebo/Red</material>
+        <material>Gazebo/Red</material>
     </gazebo>
 ```
 4. Add ros plugin for laser and imu link in gazebo.xacro
