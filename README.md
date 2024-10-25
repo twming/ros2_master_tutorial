@@ -2,8 +2,8 @@
 
 - [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
 - [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros)
-  - [Optional 1:](#optional-1)
-  - [Optional 2:](#optional-2)
+  - [Optional 1: differential drive](#optional-1-differential-drive)
+  - [Optional 2: lidar and imu](#optional-2-lidar-and-imu)
 - [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise3-raspberry-pi-turtlebot3-setup)
   - [SLAM](#slam)
   - [Navigation](#navigation)
@@ -183,7 +183,7 @@ ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
 
-### Optional 1: diffential drive
+### Optional 1: differential drive
 1. Create common_properties.xacro file, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
