@@ -647,9 +647,13 @@ if __name__ == '__main__':
 1. Check your VM camera
 ```
 cd C:\Program Files\Oracle\VirtualBox
+VBoxManage list webcams
+```
+2. Attach webcam to VM
+```
 VBoxManage controlvm <vm_name> webcam attach .1
 ```
-2. Create a python file, called "gesture_control.py" 
+3. Create a python file, called "gesture_control.py" 
 ```
 #!/usr/bin/env python3
 import rclpy
@@ -870,4 +874,4 @@ def main(args=None):
 if __name__=='__main__':
 	main()
 ```
-3. Build and run.
+4. Build and run.
