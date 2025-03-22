@@ -475,7 +475,7 @@ Enable UTF-8 locale support
 ```
 locale  # check for UTF-8
 
-sudo apt update && sudo apt install locales
+sudo apt update && sudo apt install locales -y
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -484,8 +484,8 @@ locale  # verify settings
 ```
 Enable Universe repository in Ubuntu
 ```
-sudo apt install software-properties-common
-sudo add-apt-repository universe
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y universe
 ```
 Add the ROS2 GPG key with apt
 ```
@@ -502,8 +502,8 @@ sudo apt update
 ```
 Then install ros-humble-ros-base and ros-humble-turtlebot3-bringup
 ```
-sudo apt install ros-humble-ros-base
-sudo apt install ros-humble-turtlebot3-bringup
+sudo apt install -y ros-humble-ros-base
+sudo apt install -y ros-humble-turtlebot3-bringup
 ```
 6. Input the environment data to the .bashrc
 ```
