@@ -464,7 +464,7 @@ IPQoS cs0 cs0
 ```
 Edit the sshd_config setting
 ```
-sudo nano /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+sudo nano /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
 Change the PasswordAuthentication from 'no' to 'yes'
 ```
