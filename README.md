@@ -41,9 +41,11 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 5. Setup ROS environment
 ```
 echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
+echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
 echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
 echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
+
 ```
 6. Source the ROS environment
 ```
