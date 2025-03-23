@@ -200,10 +200,17 @@ wheel_length = ${size_ratio*0.05}
 > [!TIP]
 > Can you visualize your robot in ROS RViz? TF Tree, Joint_State.
 
+Terminal 1:
 ```
 cd ~/dev_ws/src/autocar_description/urdf
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
+```
+Terminal 2:
+```
 ros2 run joint_state_publisher_gui joint_state_publisher_gui
+```
+Terminal 3:
+```
 ros2 run rviz2 rviz2
 ```
 > [!IMPORTANT]
