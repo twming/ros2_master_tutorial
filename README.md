@@ -303,7 +303,7 @@ ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_descrip
 ros2 launch gazebo_ros gazebo_launch.py
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
-![Gazebo](https://github.com/twming/ros2_master_tutorial/blob/main/img/gazebo.png)
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/gazebo.png" alt="Gazebo" width="600">
 
 > [!TIP]
 > Control your robot using topic /cmd_vel.
@@ -458,7 +458,7 @@ angular:
 ```
 https://www.raspberrypi.com/software/
 ```
-![Raspberry Pi](https://github.com/twming/ros2_master_tutorial/blob/main/img/raspberrypi.png)
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/raspberrypi.png" alt="Raspberry Pi" width="600">
 
 2. Use the SD-Card provided, install Ubuntu 22.04 server on the card using "Raspberry Pi Imager"
 3. Connect up Raspberry Pi to TV monitor, keyboard, mouse. Boot up the into Ubuntu.
