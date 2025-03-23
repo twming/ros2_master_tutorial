@@ -298,7 +298,7 @@ ros2 launch auto_description autocar_display.launch
 ```
 <img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/collision_tag.png" alt="Inertia" width="600">
 
-3. Create gazebo.xacro file, add below for Gazebo differential drive simulation. This will simulate two-wheel differential drive.
+3. Create "gazebo.xacro" file, add below for Gazebo differential drive simulation. This will simulate two-wheel differential drive.
 ```
 <?xml version="1.0"?>
 
