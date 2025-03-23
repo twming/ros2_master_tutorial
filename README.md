@@ -38,6 +38,17 @@ https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
 sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-publisher ros-humble-xacro
 ```
+5. Setup ROS environment
+```
+echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
+echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
+echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
+echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
+```
+6. Source the ROS environment
+```
+source ~/.bashrc
+```
 
 > [!TIP]
 > - How to verify your ROS installation is working?
@@ -229,7 +240,7 @@ install (
 ros2 launch auto_description autocar_display.launch
 ```
 ### 2.2: autocar differential drive and Simulation in Gazebo
-1. Create common_properties.xacro file, add below for inertial simulation.
+1. Create "common_properties.xacro" file in urdf folder, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
 
@@ -358,8 +369,8 @@ angular:
   z: 0.2"
 ```
 
-### Optional 2: lidar and imu
-1. Add laser_link and imu_link to autocar.xacro file.
+### 2.3: lidar and imu
+1. Add laser_link and imu_link to "autocar.xacro" file.
 ```
     <link name="laser_link">
         <visual>
@@ -387,7 +398,7 @@ angular:
         </visual>        
     </link>
 ```
-2. Add base_laser_joint and imu_base_imu_joint to autocar.xacro file.
+2. Add base_laser_joint and imu_base_imu_joint to "autocar.xacro" file.
 ```
     <joint name="base_laser_joint" type="fixed">
         <parent link="base_link"/>
@@ -401,7 +412,7 @@ angular:
         <origin xyz="0 0 -0.0025" rpy="0 0 0" />
     </joint>
 ```
-3. Add color for laser and imu link in gazebo.xacro.
+3. Add color for laser and imu link in "gazebo.xacro".
 ```
     <gazebo reference="laser_link">
         <material>Gazebo/Red</material>
@@ -411,7 +422,7 @@ angular:
         <material>Gazebo/Red</material>
     </gazebo>
 ```
-4. Add ros plugin for laser and imu link in gazebo.xacro
+4. Add ros plugin for laser and imu link in "gazebo.xacro"
 ```
     <gazebo reference="laser_link">
         <sensor name="laser" type="ray">
