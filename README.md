@@ -21,7 +21,7 @@ https://www.virtualbox.org/wiki/Downloads
 ```
 ![Virtual Box](https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png)
 
-<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png" alt="virtual box" width="300" height="200">
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png" alt="virtual box" width="600">
 
 2. Setup Ubuntu 22.04 in your virtual box
 ```
