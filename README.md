@@ -192,7 +192,7 @@ ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_descrip
 ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
-> [!IMPORTANT}
+> [!IMPORTANT]
 > It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file. Create a launch folder and autocar_display.launch
 
 1. Create a "launch" folder, then add "autocar_display.launch" file to the folder.
