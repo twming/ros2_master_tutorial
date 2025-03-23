@@ -50,7 +50,10 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 
 ## Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
-1. Create "autocar_description" package, create "urdf" folder, then add "autocar.xacro" file to the folder.
+1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
+```
+ros2 pkg create --build-type ament_cmake autocar_description
+```
 2. Define the link of robot, including a box (body) and two cylinders (wheel)
 ```
 <?xml version="1.0"?>
@@ -136,10 +139,7 @@ You learn how to describe robot in URDF, create a URDF for below robots and laun
 
 </robot>
 ```
-3. The dimension of body and wheels are:
-
-![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
-
+3. The dimension of body and wheels are, replace __TODO__ with below values.
 ```
 size_ratio = 0.3
 base_length = ${size_ratio*0.6}
@@ -148,6 +148,7 @@ base_height = ${size_ratio*0.2}
 wheel_radius = ${size_ratio*0.1}
 wheel_length = ${size_ratio*0.05}
 ```
+![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
 4. Define the joints between the wheel and body
 ```
     <joint name="base_footprint_base_joint" type="fixed">
