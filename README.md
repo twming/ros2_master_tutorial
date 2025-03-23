@@ -139,7 +139,7 @@ ros2 pkg create --build-type ament_cmake autocar_description
 
 </robot>
 ```
-3. The dimension of body and wheels are, replace __TODO__ with below values.
+3. The dimension of body and wheels are, replace _ _TODO_ _ with below values.
 ```
 size_ratio = 0.3
 base_length = ${size_ratio*0.6}
