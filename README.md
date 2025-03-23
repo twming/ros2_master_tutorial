@@ -43,14 +43,15 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 > - How to verify your ROS installation is working?
 > - What is the command to check ROS topic?
 
-> [!IMPORTANT] TODO
+> [!IMPORTANT] 
 > - While install ROS, it is important to reply "Y" or "YES" to allow ubuntu continue on the installation!
 > - To automatic reply "Y", you may add "-y" after all the "sudo apt install -y ..." and "sudo add-apt-repository -y ..."
 > - Create ros_humble_install.sh shell script file, and copy the command into the file and automate in the next installation.
 ___
 
 
-# Exercise 2: Simulate Robot in ROS
+# Exercise 2: Simulate Robot in ROS and Gazebo
+### 2.1: autocar URDF and Simulation in RViz
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
 1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
 ```
@@ -227,8 +228,7 @@ install (
 ```
 ros2 launch auto_description autocar_display.launch
 ```
-
-### Optional 1: differential drive
+### 2.2: autocar differential drive and Simulation in Gazebo
 1. Create common_properties.xacro file, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
@@ -266,7 +266,7 @@ ros2 launch auto_description autocar_display.launch
 
 </robot>
 ```
-2. Add below lines to the respective object after "collision" tag.
+2. Add below lines to the respective links after "collision" tag. These help to simulate the moment of inertia in the real-world.
 ```
 <xacro:box_inertia m="5.0" l="${base_length}" w="${base_width}" h="${base_height}" xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
 ...
@@ -276,7 +276,9 @@ ros2 launch auto_description autocar_display.launch
 ...
 <xacro:sphere_inertia m="0.5" r="${wheel_radius/2.0}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
 ```
-3. Create gazebo.xacro file, add below for Gazebo differential drive simulation.
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/collision_tag.png" alt="Inertia" width="600">
+
+3. Create gazebo.xacro file, add below for Gazebo differential drive simulation. This will simulate two-wheel differential drive.
 ```
 <?xml version="1.0"?>
 
@@ -326,7 +328,7 @@ ros2 launch auto_description autocar_display.launch
     </gazebo>
 </robot>
 ```
-4. Include below lines in the autocar.xacro file
+4. Before complete, we need to include both "common_properties.xacro" and "gazebo.xacro" in the "autocar.xacro" file.
 ```
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
     <xacro:include filename="common_properties.xacro" />
@@ -334,7 +336,7 @@ ros2 launch auto_description autocar_display.launch
     <xacro:include filename="gazebo.xacro" />
 </robot>
 ```
-5. Launch Gazebo Simulation
+5. Colcon build and launch Gazebo Simulation
 ```
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
 ros2 launch gazebo_ros gazebo_launch.py
