@@ -192,6 +192,40 @@ ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_descrip
 ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
+> [!IMPORTANT}
+> It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file. Create a launch folder and autocar_display.launch
+
+1. Create a "launch" folder, then add "autocar_display.launch" file to the folder.
+2. Add the "autocar_display.launch" content as below, save the file.
+```
+<launch>
+    <let name="urdf_path" value="$(find-pkg-share autocar_description)/urdf/autocar.xacro" />
+    <!--let name="rviz_path" value="$(find-pkg-share autocar_description)/rviz/rviz_display_config.rviz" /-->
+    
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+        <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
+    </node>
+
+    <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" />
+
+    <node pkg="rviz2" exec="rviz2" output="screen"/>
+
+    <!--node pkg="rviz2" exec="rviz2" output="screen"
+        args="-d $(var rviz_path)" /-->
+</launch>
+```
+3. Update CMakeLists.txt, add below lines after the find_package
+```
+install (
+  DIRECTORY urdf launch rviz
+  DESTINATION share/${PROJECT_NAME}/
+
+)
+```
+4. Colcon build and launch
+```
+ros2 launch auto_description autocar_display.launch
+```
 
 ### Optional 1: differential drive
 1. Create common_properties.xacro file, add below for inertial simulation.
