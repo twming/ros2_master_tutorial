@@ -520,7 +520,7 @@ angular:
 ```
 ### 2.4 Launch autocar in Gazebo
 > [!IMPORTANT]
-> - create a launch file "autocar_gazebo.launch.py
+> - create a launch file "autocar_gazebo.launch.py"
 
 ```
 <launch>
