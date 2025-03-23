@@ -47,8 +47,9 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 > While install ROS, it is important to reply "Y" or "YES" to allow ubuntu continue on the installation!
 > To automatic reply "Y", you may add "-y" after all the "sudo apt install -y ..." and "sudo add-apt-repository -y ..."
 > Create ros_humble_install.sh shell script file, and copy the command into the file and automate in the next installation.
-
 ___
+
+
 # Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
 1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
@@ -452,6 +453,8 @@ angular:
   y: 0.0
   z: 0.0"
 ```
+___
+
 
 # Exercise 3: Raspberry Pi Turtlebot3 Setup
 
@@ -555,6 +558,8 @@ ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True m
 ```
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz
 ```
+___
+
 
 # Exercise 4: Robot Control
 
