@@ -532,7 +532,10 @@ sudo udevadm trigger
 ```
 
 > [!TIP]
-> How do you test your turtlebot3 burger?
+> How do you test your turtlebot3 burger with ROS command?
+
+> [!IMPORTANT]
+> Raspberry Pi is a mini-computer with USB/Serial Port, your command is translated and sent through the USB/Serial Port. Try the Arduino Nano and N20-Gear Motor with encoder.
 
 #### SLAM
 ```
