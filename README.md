@@ -45,7 +45,6 @@ echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
 echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
 echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
-
 ```
 6. Source the ROS environment
 ```
@@ -289,11 +288,11 @@ ros2 launch auto_description autocar_display.launch
 2. Add below lines to the respective links after "collision" tag. These help to simulate the moment of inertia in the real-world.
 ```
 <xacro:box_inertia m="5.0" l="${base_length}" w="${base_width}" h="${base_height}" xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
-...
+
 <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-...
+
 <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-...
+
 <xacro:sphere_inertia m="0.5" r="${wheel_radius/2.0}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
 ```
 <img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/collision_tag.png" alt="Inertia" width="600">
@@ -352,11 +351,10 @@ ros2 launch auto_description autocar_display.launch
 ```
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
     <xacro:include filename="common_properties.xacro" />
-    ....
     <xacro:include filename="gazebo.xacro" />
 </robot>
 ```
-5. Colcon build and launch Gazebo Simulation
+5. Launch Gazebo Simulation
 Terminal 1:
 ```
 cd ~/dev_ws/src/autocar_description/urdf
@@ -502,9 +500,17 @@ angular:
     </gazebo>
 ```
 5. Launch Gazebo Simulation with turtlebot3_world.world
+Terminal 1:
 ```
+cd ~/dev_ws/src/autocar_description/urdf
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
+```
+Terminal 2:
+```
 ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
+```
+Terminal 3:
+```
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot -x -2.0 -y -0.5
 ```
 6. Move the robot
@@ -539,7 +545,8 @@ angular:
 
 </launch>
 ```
-
+>[!TIPS]
+>You have learn how to do topic remapping, how to map the turtlesim teleop /turtle1/cmd_vel to /cmd_vel
 ___
 
 
