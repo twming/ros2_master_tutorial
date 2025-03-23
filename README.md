@@ -357,9 +357,17 @@ ros2 launch auto_description autocar_display.launch
 </robot>
 ```
 5. Colcon build and launch Gazebo Simulation
+Terminal 1:
 ```
+cd ~/dev_ws/src/autocar_description/urdf
 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
+```
+Terminal 2:
+```
 ros2 launch gazebo_ros gazebo_launch.py
+```
+Terminal 3:
+```
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot
 ```
 <img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/gazebo.png" alt="Gazebo" width="600">
