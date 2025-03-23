@@ -70,7 +70,7 @@ You learn how to describe robot in URDF, create a URDF for below robots and laun
 ```
 ros2 pkg create --build-type ament_cmake autocar_description
 ```
-2. Define the link of robot, including a box (body) and two cylinders (wheel)
+2. Define the link of robot, including a box (body) and two cylinders (wheel) in the "autocar.xacro" file
 ```
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
@@ -166,7 +166,7 @@ wheel_length = ${size_ratio*0.05}
 ```
 ![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
 
-4. Define the joints between the wheel and body, replace _ _TODO_ _ with the correct parent and child links
+4. Define the joints between the wheel and body (after all the links in "autocar.xacro" file), replace _ _TODO_ _ with the correct parent and child links
 ```
     <joint name="base_footprint_base_joint" type="fixed">
         <parent link="___TODO___" />
