@@ -42,7 +42,10 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 > [!TIP]
 > How to verify your ROS installation is working?
 > What is the command to check ROS topic?
-
+> [!IMPORTANT]
+> While install ROS, it is important to reply "Y" or "YES" to allow ubuntu continue on the installation!
+> To automatic reply "Y", you may add "-y" after all the "sudo apt install -y ..." and "sudo add-apt-repository -y ..."
+> Create ros_humble_install.sh shell script file, and copy the command into the file and automate in the next installation.
 
 ## Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
