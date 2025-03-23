@@ -13,7 +13,7 @@
   - [Control turtlebot3 using hand gesture](#control-turtlebot3-using-hand-gesture)
 
 
-## Exercise 1: ROS Development Setup
+# Exercise 1: ROS Development Setup
 You need to setup a virtual box and install ROS for your robot development
 1. Go to Virtual box website and download the application, install in your laptop.
 ```
@@ -48,7 +48,8 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 > To automatic reply "Y", you may add "-y" after all the "sudo apt install -y ..." and "sudo add-apt-repository -y ..."
 > Create ros_humble_install.sh shell script file, and copy the command into the file and automate in the next installation.
 
-## Exercise 2: Simulate Robot in ROS
+___
+# Exercise 2: Simulate Robot in ROS
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
 1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
 ```
@@ -452,7 +453,7 @@ angular:
   z: 0.0"
 ```
 
-## Exercise 3: Raspberry Pi Turtlebot3 Setup
+# Exercise 3: Raspberry Pi Turtlebot3 Setup
 
 1. Download "Raspberry Pi Imager" and install it.
 ```
@@ -555,7 +556,7 @@ ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True m
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz
 ```
 
-## Exercise 4: Robot Control
+# Exercise 4: Robot Control
 
 Now you have turtlebot3 burger (with Raspberry Pi) and the Ubuntu VM. You need to control the robot to move forward and stop when Lidar detected obstacle 50 cm in front (0 degree).
 #### Autonomous Exploring
