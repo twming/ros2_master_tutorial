@@ -535,7 +535,7 @@ angular:
     </include>
     
     <node pkg="gazebo_ros" exec="spawn_entity.py"
-        args=" -topic robot_description -entity autocar" />
+        args=" -topic robot_description -entity my_robot -x -2.0 -y -0.5" />
 
 </launch>
 ```
