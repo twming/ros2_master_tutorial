@@ -635,20 +635,30 @@ sudo udevadm trigger
 > [!IMPORTANT]
 > Raspberry Pi is a mini-computer with USB/Serial Port, your command is translated and sent through the USB/Serial Port. Try the Arduino Nano and N20-Gear Motor with encoder.
 
-#### SLAM
+### 3.1 SLAM
+Terminal 1: Remote login to turtlebot3 and bring up the robot by running below.
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
 ```
+Terminal 2: Start the SLAM
 ```
 ros2 launch slam_toolbox online_async_launch.py
 ```
+Terminal 3: Control the robot using keyboard, to generate the map 
+```
+ros2 run turtlebot3_teleop teleop_keyboard
+```
+Terminal 4: Save the map
 ```
 ros2 run nav2_map_server map_saver_cli -f ~/my_map
 ```
-#### Navigation
+### 3.2 Navigation
+After the map is saved, you can load the map for navigation
+Terminal 1: Load the Global Costmap
 ```
-ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=/root/my_map.yaml
+ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=~/my_map.yaml
 ```
+Terminal 2: Use the rviz interface to navigate
 ```
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz
 ```
