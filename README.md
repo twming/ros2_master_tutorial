@@ -149,7 +149,8 @@ wheel_radius = ${size_ratio*0.1}
 wheel_length = ${size_ratio*0.05}
 ```
 ![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
-4. Define the joints between the wheel and body
+
+4. Define the joints between the wheel and body, replace _ _TODO_ _ with the correct parent and child links
 ```
     <joint name="base_footprint_base_joint" type="fixed">
         <parent link="___TODO___" />
