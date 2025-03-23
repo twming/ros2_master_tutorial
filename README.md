@@ -44,9 +44,9 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 > - What is the command to check ROS topic?
 
 > [!IMPORTANT]
-> While install ROS, it is important to reply "Y" or "YES" to allow ubuntu continue on the installation!
-> To automatic reply "Y", you may add "-y" after all the "sudo apt install -y ..." and "sudo add-apt-repository -y ..."
-> Create ros_humble_install.sh shell script file, and copy the command into the file and automate in the next installation.
+> - While install ROS, it is important to reply "Y" or "YES" to allow ubuntu continue on the installation!
+> - To automatic reply "Y", you may add "-y" after all the "sudo apt install -y ..." and "sudo add-apt-repository -y ..."
+> - Create ros_humble_install.sh shell script file, and copy the command into the file and automate in the next installation.
 ___
 
 
@@ -193,7 +193,8 @@ ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 run rviz2 rviz2
 ```
 > [!IMPORTANT]
-> It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file. Create a launch folder and autocar_display.launch
+> - It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file.
+> - Create a launch folder and autocar_display.launch, then launch it. 
 
 1. Create a "launch" folder, then add "autocar_display.launch" file to the folder.
 2. Add the "autocar_display.launch" content as below, save the file.
