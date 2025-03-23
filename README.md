@@ -239,7 +239,7 @@ ros2 run rviz2 rviz2
 3. Update CMakeLists.txt, add below lines after the find_package
 ```
 install (
-  DIRECTORY urdf launch rviz
+  DIRECTORY urdf launch
   DESTINATION share/${PROJECT_NAME}/
 
 )
