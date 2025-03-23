@@ -239,7 +239,7 @@ install (
 ```
 ros2 launch auto_description autocar_display.launch
 ```
-### 2.2: autocar differential drive and Simulation in Gazebo
+### 2.2: autocar Differential Drive and Simulation in Gazebo
 1. Create "common_properties.xacro" file in urdf folder, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
@@ -369,7 +369,7 @@ angular:
   z: 0.2"
 ```
 
-### 2.3: lidar and imu
+### 2.3: autocar Lidar and Imu Simulation in Gazebo
 1. Add laser_link and imu_link to "autocar.xacro" file.
 ```
     <link name="laser_link">
@@ -501,6 +501,28 @@ angular:
   y: 0.0
   z: 0.0"
 ```
+### 2.4 Launch autocar in Gazebo
+> [!IMPORTANT]
+> - create a launch file "autocar_gazebo.launch.py
+
+```
+<launch>
+    <let name="urdf_path" value="$(find-pkg-share autocar_description)/urdf/autocar.xacro" />
+
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+        <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
+    </node>
+
+    <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py">
+        <arg name="world" value="$(find-pkg-share turtlebot3_gazebo)/worlds/turtlebot3_world.world" />
+    </include>
+    
+    <node pkg="gazebo_ros" exec="spawn_entity.py"
+        args=" -topic robot_description -entity autocar" />
+
+</launch>
+```
+
 ___
 
 
