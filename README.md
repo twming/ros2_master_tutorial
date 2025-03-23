@@ -19,7 +19,7 @@ You need to setup a virtual box and install ROS for your robot development
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```
-![Virtual Box](https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png)
+![Virtual Box](https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png =250X250)
 
 2. Setup Ubuntu 22.04 in your virtual box
 ```
