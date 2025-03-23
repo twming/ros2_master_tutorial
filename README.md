@@ -19,21 +19,20 @@ You need to setup a virtual box and install ROS for your robot development
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```
-![Virtual Box](https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png)
-
-<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png" alt="virtual box" width="600">
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/virtualbox.png" alt="Virtual Box" width="600">
 
 2. Setup Ubuntu 22.04 in your virtual box
 ```
 https://ubuntu.com/download/server/thank-you?version=22.04.5&architecture=amd64&lts=true
 ```
-![Ubuntu](https://github.com/twming/ros2_master_tutorial/blob/main/img/ubuntu.png)
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/ubuntu.png" alt="Ubuntu" width="600">
+
 
 3. Install ROS Humble in your Ubuntu
 ```
 https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
-![ROS](https://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png)
+<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png" alt="ROS" width="600">
 
 4. Install ROS packages
 ```
@@ -42,6 +41,7 @@ sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-
 
 > [!TIP]
 > How to verify your ROS installation is working?
+> What is the command to check ROS topic?
 
 
 ## Exercise 2: Simulate Robot in ROS
