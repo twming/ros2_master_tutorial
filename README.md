@@ -667,6 +667,24 @@ sudo cp `ros2 pkg prefix turtlebot3_bringup`/share/turtlebot3_bringup/script/99-
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
+11. Install package to upload OpenCR firmware
+```
+sudo dpkg --add-architecture armhf  
+sudo apt-get update  
+sudo apt-get install libc6:armhf
+```
+12. Download OpenCR firmware
+```
+wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS2/latest/opencr_update.tar.bz2   
+tar -xvf opencr_update.tar.bz2
+```
+13. Update OpenCR firmware
+```
+cd ./opencr_update
+export OPENCR_PORT=/dev/ttyACM0  
+export OPENCR_MODEL=burger
+./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr 
+```
 
 > [!TIP]
 > How do you test your turtlebot3 burger with ROS command?
