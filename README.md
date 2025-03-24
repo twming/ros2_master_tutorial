@@ -659,7 +659,7 @@ echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
 ```
 Source and run the .bashrc 
 ```
-source .bashrc
+source ~/.bashrc
 ```
 10. Setup the USB and OpenCR communication
 ```
