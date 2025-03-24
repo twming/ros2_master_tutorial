@@ -15,7 +15,7 @@
   - [Control turtlebot3 using hand gesture](#control-turtlebot3-using-hand-gesture)
 
 
-# Exercise 1: ROS Development Setup [Back](#mastering-ros-essential)
+# Exercise 1: ROS Development Setup
 You need to setup a virtual box and install ROS for your robot development
 1. Go to Virtual box website and download the application, install in your laptop.
 ```
@@ -64,7 +64,7 @@ source ~/.bashrc
 ___
 
 
-# Exercise 2: Simulate Robot in ROS and Gazebo [Back](#mastering-ros-essential)
+# Exercise 2: Simulate Robot in ROS and Gazebo
 ### 2.1: autocar URDF and Simulation in RViz
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
 1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
