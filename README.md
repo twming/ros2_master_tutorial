@@ -6,8 +6,8 @@
   - [2.2: autocar Differential Drive and Simulation in Gazebo](#22-autocar-differential-drive-and-simulation-in-gazebo)
   - [2.3: autocar Lidar and Imu Simulation in Gazebo](#23-autocar-lidar-and-imu-simulation-in-gazebo)
 - [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
-  - [SLAM](#31-slam)
-  - [Navigation](#32-navigation)
+  - [3.1: SLAM](#31-slam)
+  - [3.2: Navigation](#32-navigation)
 - [Exercise 4: Robot Control](#exercise-4-robot-control)
   - [Autonomous Exploring](#autonomous-exploring)
   - [Send Position data to IoT Cloud](#send-position-data-to-iot-cloud)
@@ -650,7 +650,7 @@ sudo udevadm trigger
 > [!IMPORTANT]
 > Raspberry Pi is a mini-computer with USB/Serial Port, your command is translated and sent through the USB/Serial Port. Try the Arduino Nano and N20-Gear Motor with encoder.
 
-### 3.1 SLAM
+### 3.1: SLAM
 Terminal 1: Remote login to turtlebot3 and bring up the robot by running below.
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
@@ -667,7 +667,7 @@ Terminal 4: Save the map
 ```
 ros2 run nav2_map_server map_saver_cli -f ~/my_map
 ```
-### 3.2 Navigation
+### 3.2: Navigation
 After the map is saved, you can load the map for navigation
 Terminal 1: Load the Global Costmap
 ```
