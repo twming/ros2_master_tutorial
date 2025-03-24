@@ -583,7 +583,11 @@ APT::Periodic::Unattended-Upgrade "0";
 sudo systemctl mask systemd-networkd-wait-online.service
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
-7. Configure Wifi
+7. Edit /etc/netplan/50-cloud-init.yaml
+```
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
+Configure Wifi
 ```
 network:
     ethernets:
