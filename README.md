@@ -576,6 +576,14 @@ Change the PasswordAuthentication from 'no' to 'yes'
 ```
 PasswordAuthentication yes
 ```
+Disable Auto Update (prevent long wait for application update), to disable it, set the value '1' to '0'
+```
+sudo nano /etc/apt/apt.conf.d/20auto-upgrades
+```
+```
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+```
 5. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
 Enable UTF-8 locale support
 ```
