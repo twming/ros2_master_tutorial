@@ -6,8 +6,9 @@
   - [2.2: autocar Differential Drive and Simulation in Gazebo](#22-autocar-differential-drive-and-simulation-in-gazebo)
   - [2.3: autocar Lidar and Imu Simulation in Gazebo](#23-autocar-lidar-and-imu-simulation-in-gazebo)
 - [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
-  - [3.1: SLAM](#31-slam)
-  - [3.2: Navigation](#32-navigation)
+  - [3.1: Configure Raspberry Pi and ROS Installation](#31-configure-raspberry-pi-and-ros-installation)
+  - [3.2: Turtlebot3 SLAM](#32-turtlebot3-slam)
+  - [3.3: Turtlebot3 Navigation](#33-turtlebot3-navigation)
 - [Exercise 4: Robot Control](#exercise-4-robot-control)
   - [Autonomous Exploring](#autonomous-exploring)
   - [Send Position data to IoT Cloud](#send-position-data-to-iot-cloud)
@@ -552,7 +553,7 @@ ___
 
 
 # Exercise 3: Raspberry Pi Turtlebot3 Setup
-
+### 3.1: Configure Raspberry Pi and ROS Installation
 1. Download "Raspberry Pi Imager" and install it.
 ```
 https://www.raspberrypi.com/software/
@@ -698,7 +699,7 @@ export OPENCR_MODEL=burger
 > [!IMPORTANT]
 > Raspberry Pi is a mini-computer with USB/Serial Port, your command is translated and sent through the USB/Serial Port. Try the Arduino Nano and N20-Gear Motor with encoder.
 
-### 3.1: SLAM
+### 3.2: Turtlebot3 SLAM
 Terminal 1: Remote login to turtlebot3 and bring up the robot by running below.
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
@@ -715,7 +716,7 @@ Terminal 4: Save the map
 ```
 ros2 run nav2_map_server map_saver_cli -f ~/my_map
 ```
-### 3.2: Navigation
+### 3.3: Turtlebot3 Navigation
 After the map is saved, you can load the map for navigation
 Terminal 1: Load the Global Costmap
 ```
