@@ -561,15 +561,7 @@ https://www.raspberrypi.com/software/
 
 2. Use the SD-Card provided, install Ubuntu 22.04 server on the card using "Raspberry Pi Imager"
 3. Connect up Raspberry Pi to TV monitor, keyboard, mouse. Boot up the into Ubuntu.
-4. Edit the sshd_config file to set the ssh QoS to best effort
-```
-sudo nano /etc/ssh/sshd_config
-```
-Input below line at the bottom of the file
-```
-IPQoS cs0 cs0
-```
-Edit the sshd_config setting
+4. Edit the /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
 sudo nano /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
@@ -577,21 +569,49 @@ Change the PasswordAuthentication from 'no' to 'yes'
 ```
 PasswordAuthentication yes
 ```
-Disable Auto Update (prevent long wait for application update), to disable it, set the value '1' to '0'
+5. Edit the /etc/apt/apt.conf.d/20auto-upgrades
 ```
 sudo nano /etc/apt/apt.conf.d/20auto-upgrades
 ```
+Disable Auto Update (prevent long wait for application update), to disable it, set the value '1' to '0'
 ```
 APT::Periodic::Update-Package-Lists "0";
 APT::Periodic::Unattended-Upgrade "0";
 ```
-Disable Network Sleep, Suspend, Hibernate
+6. Disable Network Sleep, Suspend, Hibernate
 ```
 sudo systemctl mask systemd-networkd-wait-online.service
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
+7. Configure Wifi
+```
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            optional: true
+    version: 2
+    wifis:
+        renderer: networkd
+        wlan0:
+            access-points:
+                ros_public:
+                    password: 9fea575b6a0d4668c666a4b111d7784ca062496a4570715e0d5120714b9b3f90
+                SSID:
+                    password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            dhcp4: true
+            optional: true
+```
+(Optional) Edit the /etc/ssh/sshd_config
+```
+sudo nano /etc/ssh/sshd_config
+```
+Set the ssh QoS to best effort
+```
+IPQoS cs0 cs0
+```
 
-5. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
+8. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
 Enable UTF-8 locale support
 ```
 locale  # check for UTF-8
@@ -626,7 +646,7 @@ Then install ros-humble-ros-base and ros-humble-turtlebot3-bringup
 sudo apt install -y ros-humble-ros-base
 sudo apt install -y ros-humble-turtlebot3-bringup
 ```
-6. Input the environment data to the .bashrc
+9. Input the environment data to the .bashrc
 ```
 echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
 echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
@@ -637,7 +657,7 @@ Source and run the .bashrc
 ```
 source .bashrc
 ```
-7. Setup the USB and OpenCR communication
+10. Setup the USB and OpenCR communication
 ```
 sudo cp `ros2 pkg prefix turtlebot3_bringup`/share/turtlebot3_bringup/script/99-turtlebot3-cdc.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
