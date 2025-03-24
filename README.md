@@ -64,7 +64,7 @@ source ~/.bashrc
 ___
 
 
-# Exercise 2: Simulate Robot in ROS and Gazebo
+# Exercise 2: Simulate Robot in ROS and Gazebo [Back](#mastering-ros-essential)
 ### 2.1: autocar URDF and Simulation in RViz
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
 1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
