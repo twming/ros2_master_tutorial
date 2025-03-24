@@ -584,6 +584,12 @@ sudo nano /etc/apt/apt.conf.d/20auto-upgrades
 APT::Periodic::Update-Package-Lists "0";
 APT::Periodic::Unattended-Upgrade "0";
 ```
+Disable Network Sleep, Suspend, Hibernate
+```
+sudo systemctl mask systemd-networkd-wait-online.service
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
+
 5. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
 Enable UTF-8 locale support
 ```
