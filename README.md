@@ -2,8 +2,9 @@
 
 - [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
 - [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros)
-  - [Optional 1: differential drive](#optional-1-differential-drive)
-  - [Optional 2: lidar and imu](#optional-2-lidar-and-imu)
+  - [2.1: autocar URDF and Simulation in RViz](#2.1: autocar URDF and Simulation in RViz)
+  - [2.2: autocar Differential Drive and Simulation in Gazebo](#2.2: autocar Differential Drive and Simulation in Gazebo)
+  - [2.3: autocar Lidar and Imu Simulation in Gazebo](#2.3: autocar Lidar and Imu Simulation in Gazebo)
 - [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
   - [SLAM](#slam)
   - [Navigation](#navigation)
