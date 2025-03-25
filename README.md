@@ -664,7 +664,20 @@ echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
 echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
 ```
 
-10. Setup the USB and OpenCR communication
+10. Install package to upload OpenCR firmware
+```
+sudo dpkg --add-architecture armhf  
+sudo apt-get update  
+sudo apt-get install libc6:armhf
+```
+
+11. Download OpenCR firmware
+```
+wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS2/latest/opencr_update.tar.bz2   
+tar -xvf opencr_update.tar.bz2
+```
+
+12. Setup the USB and OpenCR communication
 Source and run the .bashrc 
 ```
 source ~/.bashrc
@@ -674,17 +687,7 @@ sudo cp `ros2 pkg prefix turtlebot3_bringup`/share/turtlebot3_bringup/script/99-
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
-11. Install package to upload OpenCR firmware
-```
-sudo dpkg --add-architecture armhf  
-sudo apt-get update  
-sudo apt-get install libc6:armhf
-```
-12. Download OpenCR firmware
-```
-wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS2/latest/opencr_update.tar.bz2   
-tar -xvf opencr_update.tar.bz2
-```
+
 13. Update OpenCR firmware
 ```
 cd ./opencr_update
