@@ -21,46 +21,49 @@ fi
 
 printf '\033[33m%s\033[m\n' "=================================================="
 printf '\033[33m%s\033[m\n' "|           Update Ubuntu 22.05                  |"
-printf '\033[33m%s\033[m\n' "|           TODO: HERE                           |"
+printf '\033[33m%s\033[m\n' "|           TODO: HERE (Step 8)                  |"
 printf '\033[33m%s\033[m\n' "=================================================="
 
 
 
 printf '\033[33m%s\033[m\n' "=================================================="
 printf '\033[33m%s\033[m\n' "|           Get ROS Humble key                   |"
-printf '\033[33m%s\033[m\n' "|           TODO: HERE                           |"
+printf '\033[33m%s\033[m\n' "|           TODO: HERE (Step 8)                  |"
 printf '\033[33m%s\033[m\n' "=================================================="
 
 
 
 printf '\033[33m%s\033[m\n' "=================================================="
 printf '\033[33m%s\033[m\n' "|           Install ROS Humble                   |"
-printf '\033[33m%s\033[m\n' "|           TODO: HERE                           |"
+printf '\033[33m%s\033[m\n' "|           TODO: HERE (Step 8)                  |"
 printf '\033[33m%s\033[m\n' "=================================================="
 
 
 
 printf '\033[33m%s\033[m\n' "=================================================="
-printf '\033[33m%s\033[m\n' "|           Install ROS dependencie              |"
-printf '\033[33m%s\033[m\n' "=================================================="
-
-sudo apt install -y python3-pip
-sudo apt install -y libserial-dev ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-xacro ros-humble-joint-state-publisher-gui ros-humble-robot-localization ros-humble-joy ros-humble-joy-teleop ros-humble-tf-transformations ros-humble-joint-state-broadcaster ros-humble-velocity-controllers ros-humble-diff-drive-controller
-pip install smbus
-
-printf '\033[33m%s\033[m\n' "=================================================="
-printf '\033[33m%s\033[m\n' "|           Update Environment Variables         |"
+printf '\033[33m%s\033[m\n' "|           Update ROS Environment Variables     |"
+printf '\033[33m%s\033[m\n' "|           TODO: HERE (Step 9)                  |"
 printf '\033[33m%s\033[m\n' "=================================================="
 
 
-grep -F "source /opt/ros/$CHOOSE_ROS_DISTRO/setup.bash" ~/.bashrc ||
-echo "source /opt/ros/$CHOOSE_ROS_DISTRO/setup.bash" >> ~/.bashrc
 
-grep -F "export ROS_DOMAIN_ID=30" ~/.bashrc ||
-echo "export ROS_DOMAIN_ID=30" >> ~/.bashrc
+printf '\033[33m%s\033[m\n' "=================================================="
+printf '\033[33m%s\033[m\n' "|           Install OpenCR firmware dependencies |"
+printf '\033[33m%s\033[m\n' "|           TODO: HERE (Step 10)                 |"
+printf '\033[33m%s\033[m\n' "=================================================="
+
+
+
+printf '\033[33m%s\033[m\n' "=================================================="
+printf '\033[33m%s\033[m\n' "|           Download OpenCR firmware             |"
+printf '\033[33m%s\033[m\n' "|           TODO: HERE (Step 11)                 |"
+printf '\033[33m%s\033[m\n' "=================================================="
+
+
+
+printf '\033[33m%s\033[m\n' "=================================================="
+printf '\033[33m%s\033[m\n' "|           ROS Installation Complete            |"
+printf '\033[33m%s\033[m\n' "=================================================="
+
 source ~/.bashrc
-
-printf '\033[33m%s\033[m\n' "=================================================="
-printf '\033[33m%s\033[m\n' "|           ROS Installation Successful          |"
-printf '\033[33m%s\033[m\n' "=================================================="
 
