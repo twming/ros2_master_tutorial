@@ -663,6 +663,8 @@ echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
 echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
 echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
 ```
+> [!IMPORTANT]  
+> Automate Step 10 using ros_humble_install.sh
 
 10. Install package to upload OpenCR firmware
 ```
@@ -670,6 +672,8 @@ sudo dpkg --add-architecture armhf
 sudo apt-get update  
 sudo apt-get install libc6:armhf
 ```
+> [!IMPORTANT]  
+> Automate Step 11 using ros_humble_install.sh
 
 11. Download OpenCR firmware
 ```
