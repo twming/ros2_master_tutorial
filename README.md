@@ -708,11 +708,11 @@ export OPENCR_MODEL=burger
 
 ### 3.2: Turtlebot3 SLAM
 These are the required package for Turtlebot3 SLAM and Navigation, you can installed them. Use the slam node to collect the map.
-> [!IMPORTANT]
-> Before bringup your robot, make sure Turtlebot3 and your PC are in the same network and ROS_DOMAIN_ID
 ```
 sudo apt install ros-humble-turtlebot3 ros-humble-turtlebot3-simulations
 ```
+> [!IMPORTANT]
+> Before bringup your robot, make sure Turtlebot3 and your PC are in the same network and ROS_DOMAIN_ID
 Terminal 1: Remote login to turtlebot3 and bring up the robot by running below.
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
