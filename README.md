@@ -707,6 +707,12 @@ export OPENCR_MODEL=burger
 > Raspberry Pi is a mini-computer with USB/Serial Port, your command is translated and sent through the USB/Serial Port. Try the Arduino Nano and N20-Gear Motor with encoder.
 
 ### 3.2: Turtlebot3 SLAM
+These are the required package for Turtlebot3 SLAM and Navigation, you can installed them. Use the slam node to collect the map.
+> [!IMPORTANT]
+> Before bringup your robot, make sure Turtlebot3 and your PC are in the same network and ROS_DOMAIN_ID
+```
+sudo apt install ros-humble-turtlebot3 ros-humble-turtlebot3-simulations
+```
 Terminal 1: Remote login to turtlebot3 and bring up the robot by running below.
 ```
 ros2 launch turtlebot3_bringup robot.launch.py
