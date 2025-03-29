@@ -719,7 +719,7 @@ ros2 launch turtlebot3_bringup robot.launch.py
 ```
 Terminal 2: Start the SLAM
 ```
-ros2 launch slam_toolbox online_async_launch.py
+ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=False
 ```
 Terminal 3: Control the robot using keyboard, to generate the map 
 ```
