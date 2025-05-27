@@ -196,15 +196,15 @@ wheel_length = ${size_ratio*0.05}
     </joint>
 ```
 5. Define the parent and child links
-6. Launch it in ROS RViz using robot_state_publisher and joint_state_publisher_gui
+6. Colcon build the package and source the setup.bash
+7. Launch it in ROS RViz using robot_state_publisher and joint_state_publisher_gui
 
 > [!TIP]
 > Can you visualize your robot in ROS RViz? TF Tree, Joint_State.
 
 Terminal 1:
 ```
-cd ~/dev_ws/src/autocar_description/urdf
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.urdf)"
 ```
 Terminal 2:
 ```
