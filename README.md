@@ -3,8 +3,11 @@
 - [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
 - [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros-and-gazebo)
   - [2.1: autocar URDF and Simulation in RViz](#21-autocar-urdf-and-simulation-in-rviz)
-  - [2.2: autocar Differential Drive and Simulation in Gazebo](#22-autocar-differential-drive-and-simulation-in-gazebo)
-  - [2.3: autocar Lidar and Imu Simulation in Gazebo](#23-autocar-lidar-and-imu-simulation-in-gazebo)
+  - [2.2: RViz Configuration Setup and Saving](#22-rviz-configuration-setup-and-saving)
+  - [2.3: Launch file for autocar](#23-launch-file-for-autocar)
+  - [2.4: autocar Differential Drive and Simulation in Gazebo](#24-autocar-differential-drive-and-simulation-in-gazebo)
+  - [2.5: autocar Lidar and Imu Simulation in Gazebo](#25-autocar-lidar-and-imu-simulation-in-gazebo)
+  - [2.6 Launch autocar in Gazebo](#26-launch-autocar-in-gazebo)
 - [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
   - [3.1: Configure Raspberry Pi and ROS Installation](#31-configure-raspberry-pi-and-ros-installation)
   - [3.2: Turtlebot3 SLAM](#32-turtlebot3-slam)
@@ -214,6 +217,23 @@ Terminal 3:
 ```
 ros2 run rviz2 rviz2
 ```
+
+### 2.2: RViz Configuration Setup and Saving
+
+1. Create "rviz" folder
+2. Add "RobotModel" and "TF" to RViz. You need to set RobotModel "Description Topic" to "/robot_description"
+
+3. Save the RViz view/config to rviz folder, file name "autocar.rviz".
+4. Update CMakeLists.txt to install "rviz" folder. Add below lines to CMakeLists.txt
+```
+install(
+   DIRECTORY urdf 
+   DESTINATION share/${PROJECT_NAME}/
+)
+```
+
+### 2.3: Launch file for autocar
+
 > [!IMPORTANT]
 > - It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file.
 > - Create a launch folder and autocar_display.launch, then launch it. 
@@ -223,7 +243,7 @@ ros2 run rviz2 rviz2
 ```
 <launch>
     <let name="urdf_path" value="$(find-pkg-share autocar_description)/urdf/autocar.xacro" />
-    <!--let name="rviz_path" value="$(find-pkg-share autocar_description)/rviz/rviz_display_config.rviz" /-->
+    <let name="rviz_path" value="$(find-pkg-share autocar_description)/rviz/autocar.rviz" />
     
     <node pkg="robot_state_publisher" exec="robot_state_publisher">
         <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
@@ -233,8 +253,8 @@ ros2 run rviz2 rviz2
 
     <node pkg="rviz2" exec="rviz2" output="screen"/>
 
-    <!--node pkg="rviz2" exec="rviz2" output="screen"
-        args="-d $(var rviz_path)" /-->
+    <node pkg="rviz2" exec="rviz2" output="screen"
+        args="-d $(var rviz_path)" />
 </launch>
 ```
 3. Update CMakeLists.txt, add below lines after the find_package
@@ -249,7 +269,7 @@ install (
 ```
 ros2 launch auto_description autocar_display.launch
 ```
-### 2.2: autocar Differential Drive and Simulation in Gazebo
+### 2.4: autocar Differential Drive and Simulation in Gazebo
 1. Create "common_properties.xacro" file in urdf folder, add below for inertial simulation.
 ```
 <?xml version="1.0"?>
@@ -386,7 +406,7 @@ angular:
   z: 0.2"
 ```
 
-### 2.3: autocar Lidar and Imu Simulation in Gazebo
+### 2.5: autocar Lidar and Imu Simulation in Gazebo
 1. Add laser_link and imu_link to "autocar.xacro" file.
 ```
     <link name="laser_link">
@@ -504,8 +524,7 @@ angular:
 5. Launch Gazebo Simulation with turtlebot3_world.world
 Terminal 1:
 ```
-cd ~/dev_ws/src/autocar_description/urdf
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.urdf)"
 ```
 Terminal 2:
 ```
@@ -526,7 +545,7 @@ angular:
   y: 0.0
   z: 0.0"
 ```
-### 2.4 Launch autocar in Gazebo
+### 2.6 Launch autocar in Gazebo
 > [!IMPORTANT]
 > - create a launch file "autocar_gazebo.launch.py"
 
