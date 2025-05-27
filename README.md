@@ -4,10 +4,10 @@
 - [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros-and-gazebo)
   - [2.1: autocar URDF and Simulation in RViz](#21-autocar-urdf-and-simulation-in-rviz)
   - [2.2: RViz Configuration Setup and Saving](#22-rviz-configuration-setup-and-saving)
-  - [2.3: Launch file for autocar](#23-launch-file-for-autocar)
+  - [2.3: Launch file for autocar in RViz](#23-launch-file-for-autocar-in-rviz)
   - [2.4: autocar Differential Drive and Simulation in Gazebo](#24-autocar-differential-drive-and-simulation-in-gazebo)
   - [2.5: autocar Lidar and Imu Simulation in Gazebo](#25-autocar-lidar-and-imu-simulation-in-gazebo)
-  - [2.6 Launch autocar in Gazebo](#26-launch-autocar-in-gazebo)
+  - [2.6 Launch file for autocar in Gazebo](#26-launch-file-for-autocar-in-gazebo)
 - [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
   - [3.1: Configure Raspberry Pi and ROS Installation](#31-configure-raspberry-pi-and-ros-installation)
   - [3.2: Turtlebot3 SLAM](#32-turtlebot3-slam)
@@ -232,7 +232,7 @@ install(
 )
 ```
 
-### 2.3: Launch file for autocar
+### 2.3: Launch file for autocar in RViz
 
 > [!IMPORTANT]
 > - It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file.
@@ -545,7 +545,7 @@ angular:
   y: 0.0
   z: 0.0"
 ```
-### 2.6 Launch autocar in Gazebo
+### 2.6 Launch fie for autocar in Gazebo
 > [!IMPORTANT]
 > - create a launch file "autocar_gazebo.launch.py"
 
