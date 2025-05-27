@@ -545,7 +545,7 @@ angular:
   y: 0.0
   z: 0.0"
 ```
-### 2.6 Launch fie for autocar in Gazebo
+### 2.6 Launch file for autocar in Gazebo
 > [!IMPORTANT]
 > - create a launch file "autocar_gazebo.launch.py"
 
