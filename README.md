@@ -380,8 +380,7 @@ ros2 launch auto_description autocar_display.launch
 5. Launch Gazebo Simulation
 Terminal 1:
 ```
-cd ~/dev_ws/src/autocar_description/urdf
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro autocar.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.xacro)"
 ```
 Terminal 2:
 ```
