@@ -214,7 +214,7 @@ install(
 
 Terminal 1:
 ```
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.urdf)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.xacro)"
 ```
 Terminal 2:
 ```
