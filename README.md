@@ -31,9 +31,9 @@ install(
    DESTINATION share/${PROJECT_NAME}/
 )
 ```
-7. Display URDF
+7. Colcon build, source the setup.bash, display URDF
 ```
-ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share autocar_description`/urdf/autocar.urdf
+ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share democar_description`/urdf/democar.urdf
 ```
 8. Typically base_footprint_link (imagine this is the ground) has no geometry and dimension, but link to the robot
 ```
