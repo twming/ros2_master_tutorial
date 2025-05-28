@@ -267,7 +267,7 @@ install(
 3. Update CMakeLists.txt, add below lines after the find_package
 ```
 install (
-  DIRECTORY urdf launch
+  DIRECTORY urdf rviz launch
   DESTINATION share/${PROJECT_NAME}/
 
 )
