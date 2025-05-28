@@ -41,7 +41,7 @@ ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share demo
 
 <img src="https://github.com/twming/ros2_master_tutorial/blob/demo/img/img2.png" alt="img2" width="600">
 
-8. Typically, base_footprint_link (imagine this is the ground) has no geometry and dimension, but link to the robot
+8. Typically, base_footprint_link (imagine this is the ground) has no geometry and dimension, but link to the robot. base_link is offset above base_footprint_link by 0.1 (caster wheel diameter)
 ```
 <link name="base_footprint_link" />
 
@@ -55,7 +55,7 @@ ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share demo
 
 <img src="https://github.com/twming/ros2_master_tutorial/blob/demo/img/img3a.png" alt="img3a" width="600">
 
-9. right_wheel_link and joint, joint offset by (x= -0.15, y= -0.225). right_wheel_link is attached to the joint, but rotate 90 degree. 
+9. right_wheel_link and joint, joint offset by (x= -0.15, y= -0.225, (base width + wheel length/2) ). right_wheel_link is attached to the joint, but rotate 90 degree. 
 ```
 <link name="right_wheel_link">
         <visual>
@@ -74,7 +74,7 @@ ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share demo
 
 <img src="https://github.com/twming/ros2_master_tutorial/blob/demo/img/img4.png" alt="img4" width="600">
 
-10. Practice: Add left_wheel_link and joint, fill in the TODO:XXXX
+10. Practice: Add left_wheel_link and joint, fill in the TODO:XXXX (opposite side)
 ```
 <link name="left_wheel_link">
         <visual>
@@ -93,7 +93,7 @@ ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share demo
 
 <img src="https://github.com/twming/ros2_master_tutorial/blob/demo/img/img4a.png" alt="img4a" width="600">
 
-11. caster_wheel_link and joint
+11. caster_wheel_link and joint (radius = 0.05, diameter = 0.1)
 ```
 <link name="caster_wheel_link">
         <visual>
