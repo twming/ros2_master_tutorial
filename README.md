@@ -1,16 +1,14 @@
-Simulate Robot in ROS and Gazebo
+# Simulate Robot in ROS and Gazebo
 1. Create democar_description package
 ```
 ros2 pkg create --build-type ament_cmake democar_description
 ```
-
 2. Create "urdf" folder in the package
-3. Create democar.urdf file in "urdf" folder
-
-4. base_link (car body)
+3. Create "democar.urdf" file in "urdf" folder
+4. base_link (car body in a box shape), the dimension is 0.6 x 0.4 x 0.2
 ```
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
+<robot name="autocar">
     <link name="base_link">
         <visual>
             <geometry><box size="0.6 0.4 0.2" /></geometry>
@@ -24,18 +22,20 @@ ros2 pkg create --build-type ament_cmake democar_description
 apt update
 apt install ros-humble-urdf-tutorial
 ```
-6. Update CMakeLists.txt
+6. Update CMakeLists.txt, so that ROS will copy the "urdf" folder to share
 ```
 install(
    DIRECTORY urdf 
    DESTINATION share/${PROJECT_NAME}/
 )
 ```
-7. Colcon build, source the setup.bash, display URDF
+7. Colcon build, source the setup.bash, display the robot
 ```
+colcon build
+source ~/dev_ws/install/setup.bash
 ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share democar_description`/urdf/democar.urdf
 ```
-8. Typically base_footprint_link (imagine this is the ground) has no geometry and dimension, but link to the robot
+8. Typically, base_footprint_link (imagine this is the ground) has no geometry and dimension, but link to the robot
 ```
 <link name="base_footprint_link" />
 <joint name="base_footprint_base_joint" type="fixed">
@@ -44,7 +44,7 @@ ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share demo
         <origin xyz="0 0 0.1" rpy="0 0 0" />
 </joint>
 ```
-9. right_wheel_link and joint
+9. right_wheel_link and joint, joint offset by (x= -0.15, y= -0.225). right_wheel_link is attached to the joint, but rotate 90 degree. 
 ```
 <link name="right_wheel_link">
         <visual>
@@ -59,7 +59,7 @@ ros2 launch urdf_tutorial display.launch.py model:=`ros2 pkg prefix --share demo
         <axis xyz="0 1 0" />
 </joint>
 ```
-10. Practice: Add left_wheel_link and joint
+10. Practice: Add left_wheel_link and joint, fill in the TODO:XXXX
 ```
 <link name="left_wheel_link">
         <visual>
