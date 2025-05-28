@@ -199,8 +199,15 @@ wheel_length = ${size_ratio*0.05}
     </joint>
 ```
 5. Define the parent and child links
-6. Colcon build the package and source the setup.bash
-7. Launch it in ROS RViz using robot_state_publisher and joint_state_publisher_gui
+6. Update CMakeLists.txt to install "rviz" folder. Add below lines to CMakeLists.txt
+```
+install(
+   DIRECTORY urdf 
+   DESTINATION share/${PROJECT_NAME}/
+)
+```
+7. Colcon build the package and source the setup.bash
+8. Launch it in ROS RViz using robot_state_publisher and joint_state_publisher_gui
 
 > [!TIP]
 > Can you visualize your robot in ROS RViz? TF Tree, Joint_State.
