@@ -224,7 +224,9 @@ Terminal 3:
 ```
 ros2 run rviz2 rviz2
 ```
-9. Add "RobotModel" and "TF" to RViz. You need to set RobotModel "Description Topic" to "/robot_description"
+9. Add "RobotModel" and "TF" to RViz. You need to set RobotModel "Fixed Frame" to "base_footprint_link", "Description Topic" to "/robot_description",
+- Fixed Frame: base_footprint_link
+- Description Topic: /robot_description
    
 ### 2.2: RViz Configuration Setup and Saving
 
