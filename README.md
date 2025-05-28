@@ -1,4 +1,4 @@
-# Simulate Robot in ROS and Gazebo
+# Simulate Robot in ROS RViz
 1. Create democar_description package
 ```
 ros2 pkg create --build-type ament_cmake democar_description
