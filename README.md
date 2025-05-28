@@ -252,7 +252,7 @@ ros2 run rviz2 rviz2
 
     <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" />
 
-    <node pkg="rviz2" exec="rviz2" output="screen"/>
+    <!--node pkg="rviz2" exec="rviz2" output="screen"/-->
 
     <node pkg="rviz2" exec="rviz2" output="screen"
         args="-d $(var rviz_path)" />
