@@ -224,20 +224,12 @@ Terminal 3:
 ```
 ros2 run rviz2 rviz2
 ```
-
+9. Add "RobotModel" and "TF" to RViz. You need to set RobotModel "Description Topic" to "/robot_description"
+   
 ### 2.2: RViz Configuration Setup and Saving
 
 1. Create "rviz" folder
-2. Add "RobotModel" and "TF" to RViz. You need to set RobotModel "Description Topic" to "/robot_description"
-
-3. Save the RViz view/config to rviz folder, file name "autocar.rviz".
-4. Update CMakeLists.txt to install "rviz" folder. Add below lines to CMakeLists.txt
-```
-install(
-   DIRECTORY urdf rviz
-   DESTINATION share/${PROJECT_NAME}/
-)
-```
+2. Save the RViz view/config to rviz folder, file name "autocar.rviz".
 
 ### 2.3: Launch file for autocar in RViz
 
@@ -264,7 +256,7 @@ install(
         args="-d $(var rviz_path)" />
 </launch>
 ```
-3. Update CMakeLists.txt, add below lines after the find_package
+3. Update "rviz" and "launch" in CMakeLists.txt
 ```
 install (
   DIRECTORY urdf rviz launch
