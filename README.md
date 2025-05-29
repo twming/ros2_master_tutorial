@@ -385,7 +385,7 @@ ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_descrip
 ```
 Terminal 2:
 ```
-ros2 launch gazebo_ros gazebo_launch.py
+ros2 launch gazebo_ros gazebo.launch.py
 ```
 Terminal 3:
 ```
