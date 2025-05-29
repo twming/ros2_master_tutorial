@@ -268,7 +268,7 @@ install (
 ```
 4. Colcon build and launch
 ```
-ros2 launch auto_description autocar_display.launch
+ros2 launch autocar_description autocar_display.launch
 ```
 ### 2.4: autocar Differential Drive and Simulation in Gazebo
 1. Create "common_properties.xacro" file in urdf folder, add below for inertial simulation.
