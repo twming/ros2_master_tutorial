@@ -753,7 +753,7 @@ ros2 run nav2_map_server map_saver_cli -f ~/my_map
 After the map is saved, you can load the map for navigation
 Terminal 1: Load the Global Costmap
 ```
-ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=~/my_map.yaml
+ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=True map:=$HOME/my_map.yaml
 ```
 Terminal 2: Use the rviz interface to navigate
 ```
