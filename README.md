@@ -691,7 +691,7 @@ echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
 ```
 sudo dpkg --add-architecture armhf  
 sudo apt-get update  
-sudo apt-get install libc6:armhf
+sudo apt-get install libc6:armhf -y
 ```
 > [!IMPORTANT]  
 > Automate Step 11 using ros_humble_install.sh
