@@ -673,6 +673,7 @@ Then install ros-humble-ros-base and ros-humble-turtlebot3-bringup
 ```
 sudo apt install -y ros-humble-ros-base
 sudo apt install -y ros-humble-turtlebot3-bringup
+sudo apt install -y ros-humble-xacro
 ```
 > [!IMPORTANT]  
 > Automate Step 9 using ros_humble_install.sh
