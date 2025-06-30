@@ -38,7 +38,6 @@ https://ubuntu.com/download/server/thank-you?version=22.04.5&architecture=amd64&
 > [!IMPORTANT] 
 > - Follow the steps in "Set locale", "Setup Sources", "Install ROS 2 packages" in below site.
 > - In "Install ROS 2 packages" step, install "ros-humble-desktop" for Ubuntu VM, while install "ros-humble-ros-base" for Raspberry Pi
-> - 
 
 ```
 https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
