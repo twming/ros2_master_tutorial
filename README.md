@@ -587,34 +587,42 @@ https://www.raspberrypi.com/software/
 <img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/raspberrypi.png" alt="Raspberry Pi" width="600">
 
 2. Use the SD-Card provided, install Ubuntu 22.04 server on the card using "Raspberry Pi Imager"
-3. Connect up Raspberry Pi to TV monitor, keyboard, mouse. Boot up the into Ubuntu.
-4. Edit the /etc/ssh/sshd_config.d/50-cloud-init.conf
+
+> [!IMPORTANT] 
+> - Customize Setting to setup the wifi
+
+3. Connect up Raspberry Pi to TV monitor, keyboard, mouse. Boot up the into Ubuntu, to obtain the IP address
+```
+ip addr
+```
+
+4. Enable password login through ssh, edit the /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
 sudo nano /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
 Change the PasswordAuthentication from 'no' to 'yes'
-```
-PasswordAuthentication yes
-```
+
 5. Edit the /etc/apt/apt.conf.d/20auto-upgrades
 ```
 sudo nano /etc/apt/apt.conf.d/20auto-upgrades
 ```
 Disable Auto Update (prevent long wait for application update), to disable it, set the value '1' to '0'
-```
-APT::Periodic::Update-Package-Lists "0";
-APT::Periodic::Unattended-Upgrade "0";
-```
+
 6. Disable Network Sleep, Suspend, Hibernate
 ```
 sudo systemctl mask systemd-networkd-wait-online.service
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
-7. Edit /etc/netplan/50-cloud-init.yaml
+7. Reboot Raspberry Pi
+```
+sudo reboot
+```
+
+(Optional) Edit /etc/netplan/50-cloud-init.yaml
 ```
 sudo nano /etc/netplan/50-cloud-init.yaml
 ```
-Configure Wifi
+Configure Wifi, get the password "wpa_passphrase ros_public 0123456789"
 ```
 network:
     ethernets:
@@ -633,16 +641,9 @@ network:
             dhcp4: true
             optional: true
 ```
-(Optional) Edit the /etc/ssh/sshd_config
-```
-sudo nano /etc/ssh/sshd_config
-```
-Set the ssh QoS to best effort
-```
-IPQoS cs0 cs0
-```
+
 > [!IMPORTANT]  
-> Automate Step 8 using ros_humble_install.sh
+> Automate Step 8 - 11 using ros_humble_install.sh
 
 8. Follow the ROS Humble Desktop/Base Installation in Ubuntu for Raspberry Pi:-
 Enable UTF-8 locale support
@@ -681,7 +682,7 @@ sudo apt install -y ros-humble-turtlebot3-bringup
 sudo apt install -y ros-humble-xacro
 ```
 > [!IMPORTANT]  
-> Automate Step 9 using ros_humble_install.sh
+> Automate Step 8 - 11 using ros_humble_install.sh
 
 9. Input the environment data to the .bashrc
 ```
@@ -691,7 +692,7 @@ echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
 echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
 ```
 > [!IMPORTANT]  
-> Automate Step 10 using ros_humble_install.sh
+> Automate Step 8 - 11 using ros_humble_install.sh
 
 10. Install package to upload OpenCR firmware
 ```
@@ -700,7 +701,7 @@ sudo apt-get update
 sudo apt-get install libc6:armhf -y
 ```
 > [!IMPORTANT]  
-> Automate Step 11 using ros_humble_install.sh
+> Automate Step 8 - 11 using ros_humble_install.sh
 
 11. Download OpenCR firmware
 ```
@@ -708,7 +709,16 @@ wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS2/l
 tar -xvf opencr_update.tar.bz2
 ```
 
-12. Setup the USB and OpenCR communication
+12. File transfer ros_humble_install.sh into Raspberry Pi.
+```
+scp ros_humble_install.sh ubuntu@ip.xxx.xxx.xxx:/home/ubuntu/
+```
+13. Run the ros_humble_install.sh scripts
+```
+sudo chmod 777 ros_humble_install.sh && ./ros_humble_install.sh
+```
+
+14. Setup the USB and OpenCR communication
 Source and run the .bashrc 
 ```
 source ~/.bashrc
@@ -719,7 +729,7 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-13. Update OpenCR firmware
+15. Update OpenCR firmware
 ```
 cd ./opencr_update
 export OPENCR_PORT=/dev/ttyACM0  
