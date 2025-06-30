@@ -44,7 +44,7 @@ https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 ```
 <img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/ros.png" alt="ROS" width="600">
 
-4. Install ROS packages
+4. Install other dependency ROS packages
 ```
 sudo apt install -y ros-humble-joint-state-publisher-gui ros-humble-robot-state-publisher ros-humble-xacro
 sudo apt install -y ros-humble-turtlebot3 ros-humble-turtlebot3-simulations
