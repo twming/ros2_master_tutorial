@@ -879,7 +879,11 @@ if __name__ == '__main__':
 2. Build and run with navigation map and path planning
  
 #### Control turtlebot3 using hand gesture
-1. Check your VM camera
+1. Download and install Oracle VirtualBox Extension Pack. Go to the web site and down the extension pack, go to File -> Tools -> Extension Pack Manager, then install the extension pack.
+```
+https://www.virtualbox.org/wiki/Downloads
+```
+3. Check your VM camera using Window Command Line (cmd)
 ```
 cd C:\Program Files\Oracle\VirtualBox
 VBoxManage list webcams
@@ -950,7 +954,11 @@ def main(args=None):
         # Step1: create a node call 'hand'
         # Step2: create a publisher, to publish a Twist message to /cmd_vel, with QoS =1
         # Step3: create a subscriber, to subscribe a LaserScan message, "callback" function and QoS=10
-        #
+#        pub=nede
+#g_node = rclpy.create_node('my_sub_node')
+#subscription = g_node.create_subscription(String, 'greeting', callback, 10)
+#publisher = node.create_publisher(String, 'greeting', 10)
+
         #
         #
 
