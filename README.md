@@ -577,7 +577,7 @@ angular:
 </launch>
 ```
 > [!TIP]
-> You have learn how to do topic remapping, how to map the turtlesim teleop /turtle1/cmd_vel to /cmd_vel
+> You have learn how to teleop the turtlebot3, use the turtlebot3_teleop to move it.
 ___
 
 
