@@ -205,7 +205,7 @@ wheel_length = ${size_ratio*0.05}
     </joint>
 ```
 5. Define the parent and child links
-6. Update CMakeLists.txt to install "rviz" folder. Add below lines to CMakeLists.txt
+6. Update CMakeLists.txt to install "urdf" folder. Add below lines to CMakeLists.txt
 ```
 install(
    DIRECTORY urdf 
