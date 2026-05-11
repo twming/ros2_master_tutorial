@@ -28,7 +28,7 @@ https://www.virtualbox.org/wiki/Downloads
 
 2. Setup Ubuntu 22.04 in your virtual box
 ```
-https://ubuntu.com/download/server/thank-you?version=22.04.5&architecture=amd64&lts=true
+https://releases.ubuntu.com/jammy/
 ```
 <img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/ubuntu.png" alt="Ubuntu" width="600">
 
