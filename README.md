@@ -953,17 +953,15 @@ node=None
 # Open Camera
 def main(args=None):
 	rclpy.init(args=None)
-        # TODO:
-        # Step1: create a node call 'hand'
-        # Step2: create a publisher, to publish a Twist message to /cmd_vel, with QoS =1
-        # Step3: create a subscriber, to subscribe a LaserScan message, "callback" function and QoS=10
-#        pub=nede
-#g_node = rclpy.create_node('my_sub_node')
-#subscription = g_node.create_subscription(String, 'greeting', callback, 10)
-#publisher = node.create_publisher(String, 'greeting', 10)
 
-        #
-        #
+	# TODO: Exercise
+	# Step1: create a node call 'hand'
+	# Step2: create a publisher object called pub, to publish a Twist message to /cmd_vel, with QoS =1
+	# Step3: create a subscriber object called sub, to subscribe a LaserScan message, from /scan, and the "callback" function, QoS=1
+	#node = rclpy.create_node('_____')
+	#pub = node.create_publisher(_____, '_____', 1)
+	#sub = node.create_subscription(_____, '_____', _____, 1)
+
 
 	capture = cv2.VideoCapture(0)
 
