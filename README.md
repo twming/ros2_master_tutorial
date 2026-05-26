@@ -1,21 +1,13 @@
 # Mastering ROS Essential
 
 - [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
-- [Exercise 2: Writing a Hardware Component](#exercise-2-simulate-robot-in-ros-and-gazebo)
-  - [2.1: autocar URDF and Simulation in RViz](#21-autocar-urdf-and-simulation-in-rviz)
-  - [2.2: RViz Configuration Setup and Saving](#22-rviz-configuration-setup-and-saving)
-  - [2.3: Launch file for autocar in RViz](#23-launch-file-for-autocar-in-rviz)
-  - [2.4: autocar Differential Drive and Simulation in Gazebo](#24-autocar-differential-drive-and-simulation-in-gazebo)
-  - [2.5: autocar Lidar and Imu Simulation in Gazebo](#25-autocar-lidar-and-imu-simulation-in-gazebo)
-  - [2.6 Launch file for autocar in Gazebo](#26-launch-file-for-autocar-in-gazebo)
-- [Exercise 3: Raspberry Pi Turtlebot3 Setup](#exercise-3-raspberry-pi-turtlebot3-setup)
-  - [3.1: Configure Raspberry Pi and ROS Installation](#31-configure-raspberry-pi-and-ros-installation)
-  - [3.2: Turtlebot3 SLAM](#32-turtlebot3-slam)
-  - [3.3: Turtlebot3 Navigation](#33-turtlebot3-navigation)
-- [Exercise 4: Robot Control](#exercise-4-robot-control)
-  - [Autonomous Exploring](#autonomous-exploring)
-  - [Send Position data to IoT Cloud](#send-position-data-to-iot-cloud)
-  - [Control turtlebot3 using hand gesture](#control-turtlebot3-using-hand-gesture)
+- [Exercise 2: Writing a Hardware Component](#exercise-2-writing-a-hardware-component)
+  - [2.1: Create babybot_firmware package](#21-create-babybot-firmware-package)
+  - [2.2: Setup the babybot_firmware.hpp header file](#22-setup-the-babybot-firmware-hpp-header-file)
+  - [2.3: Implement babybot_interface.cpp source file](#23-implement-babybot-interface-cpp-source-file)
+  - [2.4: Prepare for build the package](#24-prepare-for-build-the-package)
+  - [2.5: Create export definition for pluginlib](#25-create-export-definition-for-pluginlib)
+  - [2.6: Build the package](#26-build-the-package)
 
 
 # Exercise 1: ROS Development Setup
@@ -76,12 +68,13 @@ ___
 # Exercise 2: Writing a Hardware Component
 
 You learn how to create hardware interface component by step-by-step guides.
-### 2.1: Preparing package
+### 2.1: Create babybot_firmware package
 
 1. Create "babybot_firmware" package (ament_cmake), create "babybot_firmware" folder in "include" folder.
 ```
 ros2 pkg create --build-type ament_cmake babybot_firmware
 ```
+### 2.2: Setup the babybot_firmware.hpp header file
 2. Create header file, "babybot_firmware.hpp" in the "include/babybot_firmware" folder. The header file include system_interface, node_interfaces, state and SerialPort.
 ```
 #ifndef BABYBOT_INTERFACE_HPP_
@@ -139,6 +132,8 @@ namespace babybot_firmware
 
             rclcpp::Time last_run_;
 ```
+
+### 2.3: Implement babybot_interface.cpp source file
 5. Create source file, "babybot_interface.cpp" in the "src/babybot_firmware" folder.
 ```
 #include "babybot_firmware/babybot_interface.hpp"
@@ -393,6 +388,8 @@ CallbackReturn result = hardware_interface::SystemInterface::on_init(hardware_in
 #include <pluginlib/class_list_macros.hpp>
 PLUGINLIB_EXPORT_CLASS(babybot_firmware::BabybotInterface, hardware_interface::SystemInterface)
 ```
+
+### 2.4: Prepare for build the package
 15. Setup CMakeLists.txt for colcon build
 ```
 find_package(rclpy REQUIRED)
@@ -467,6 +464,8 @@ ament_export_dependencies(
 
   <exec_depend>python3-serial</exec_depend>
 ```
+
+### 2.5: Create export definition for pluginlib
 17. Create export definition for pluginlib. Create "babybot_interface.xml" in the package root folder.
 
 ```
@@ -480,6 +479,8 @@ ament_export_dependencies(
     </class>
 </library>
 ```
+
+### 2.6: Build the package
 18. Build the package, make sure no error in the built.
 ```
 cd ~/dev_ws
