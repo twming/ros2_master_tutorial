@@ -416,7 +416,7 @@ ___
 You learn how to create hardware interface component by step-by-step guides.
 ### 3.1: Create babybot_firmware package
 
-1. Create "babybot_firmware" package (ament_cmake), create "babybot_firmware" folder in "include" folder.
+1. Create "babybot_firmware" package.
 ```
 ros2 pkg create --build-type ament_cmake babybot_firmware
 ```
@@ -481,7 +481,7 @@ namespace babybot_firmware
 ```
 
 ### 3.3: Implement babybot_interface.cpp source file
-5. Create source file, "babybot_interface.cpp" in the "src/babybot_firmware" folder.
+5. Create source file, "babybot_interface.cpp" in the "src" folder.
 ```
 #include "babybot_firmware/babybot_interface.hpp"
 #include <hardware_interface/types/hardware_interface_type_values.hpp>
