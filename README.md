@@ -76,7 +76,7 @@ ros2 pkg create --build-type ament_cmake babybot_firmware
 ```
 ### 2.2: Setup the babybot_firmware.hpp header file
 2. Create header file, "babybot_firmware.hpp" in the "include/babybot_firmware" folder. The header file include system_interface, node_interfaces, state and SerialPort.
-> [!TIP]
+
 ```
 #ifndef BABYBOT_INTERFACE_HPP_
 #define BABYBOT_INTERFACE_HPP_
