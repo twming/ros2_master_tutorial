@@ -76,7 +76,7 @@ ___
 
 
 # Exercise 2: Simulate Robot in ROS and Gazebo
-### 2.1: autocar URDF and Simulation in RViz
+### 2.1: babybot URDF and Simulation in RViz
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
 1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
 ```
@@ -222,7 +222,7 @@ install(
 
 Terminal 1:
 ```
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share babybot_description`/urdf/babybot.urdf)"
 ```
 Terminal 2:
 ```
@@ -232,16 +232,8 @@ Terminal 3:
 ```
 ros2 run rviz2 rviz2
 ```
-9. Add "RobotModel" and "TF" to RViz. You need to set RobotModel "Fixed Frame" to "base_footprint_link", "Description Topic" to "/robot_description",
-- Fixed Frame: base_footprint_link
-- Description Topic: /robot_description
-   
-### 2.2: RViz Configuration Setup and Saving
 
-1. Create "rviz" folder
-2. Save the RViz view/config to rviz folder, file name "autocar.rviz".
-
-### 2.3: Launch file for autocar in RViz
+### 2.2: Launch file for autocar in RViz
 
 > [!IMPORTANT]
 > - It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file.
@@ -415,171 +407,6 @@ angular:
   y: 0.0
   z: 0.2"
 ```
-
-### 2.5: autocar Lidar and Imu Simulation in Gazebo
-1. Add laser_link and imu_link to "autocar.xacro" file.
-```
-    <link name="laser_link">
-        <visual>
-            <geometry>
-                <cylinder radius="0.02" length="0.01"/>
-            </geometry>
-            <origin xyz="0 0 0.005" rpy="0 0 0" />
-            <material name="red"/>
-        </visual>
-        <collision>
-            <geometry>
-                <cylinder radius="0.01" length="0.01"/>
-            </geometry>
-        </collision>
-        <xacro:cylinder_inertia m="0.1" r="0.05" h="0.04" xyz="0 0 0" rpy="0 0 0" />
-    </link>
-
-    <link name="imu_link">
-        <visual>
-            <geometry>
-                <box size="0.01 0.01 0.005"/>
-            </geometry>
-            <origin xyz="0 0 0.015" rpy="0 0 0" />
-            <material name="red"/>
-        </visual>        
-    </link>
-```
-2. Add base_laser_joint and imu_base_imu_joint to "autocar.xacro" file.
-```
-    <joint name="base_laser_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="laser_link"/>
-        <origin xyz="${-base_length/3.0} 0 ${base_height}" rpy="0 0 0"/>
-    </joint>
- 
-    <joint name="base_imu_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="imu_link"/>
-        <origin xyz="0 0 -0.0025" rpy="0 0 0" />
-    </joint>
-```
-3. Add color for laser and imu link in "gazebo.xacro".
-```
-    <gazebo reference="laser_link">
-        <material>Gazebo/Red</material>
-    </gazebo>
-    
-    <gazebo reference="imu_link">
-        <material>Gazebo/Red</material>
-    </gazebo>
-```
-4. Add ros plugin for laser and imu link in "gazebo.xacro"
-```
-    <gazebo reference="laser_link">
-        <sensor name="laser" type="ray">
-            <pose> 0 0 0 0 0 0 </pose>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
-            <ray> 
-                <scan>
-                    <horizontal>
-                        <samples>360</samples>
-                        <min_angle>-3.14</min_angle>
-                        <max_angle>3.14</max_angle>
-                    </horizontal>
-                </scan>
-                <range>
-                    <min>0.3</min>
-                    <max>12</max>
-                </range>
-            </ray>
-            <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
-                <output_type>sensor_msgs/LaserScan</output_type>
-                <frame_name>laser_link</frame_name>
-            </plugin>
-        </sensor>
-    </gazebo>
-
-    <gazebo reference="imu_link">
-        <sensor name="imu_sensor" type="imu">
-            <always_on>true</always_on>
-            <update_rate>100</update_rate>
-            <visualize>true</visualize>
-            <imu>
-                <angular_velocity>
-                    <x>
-                        <noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev><bias_mean>0.0000075</bias_mean><bias_stddev>0.0000008</bias_stddev></noise>
-                    </x>
-                    <y>
-                        <noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev><bias_mean>0.0000075</bias_mean><bias_stddev>0.0000008</bias_stddev></noise>
-                    </y>
-                    <z>
-                        <noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev><bias_mean>0.0000075</bias_mean><bias_stddev>0.0000008</bias_stddev></noise>
-                    </z>
-                </angular_velocity>
-                <linear_acceleration>
-                    <x>
-                        <noise type="gaussian"><mean>0.0</mean><stddev>1.7e-2</stddev><bias_mean>0.1</bias_mean><bias_stddev>0.001</bias_stddev></noise>
-                    </x>
-                    <y>
-                        <noise type="gaussian"><mean>0.0</mean><stddev>1.7e-2</stddev><bias_mean>0.1</bias_mean><bias_stddev>0.001</bias_stddev></noise>
-                    </y>
-                    <z>
-                        <noise type="gaussian"><mean>0.0</mean><stddev>1.7e-2</stddev><bias_mean>0.1</bias_mean><bias_stddev>0.001</bias_stddev></noise>
-                    </z>
-                </linear_acceleration>
-            </imu>
-            <plugin name="imu" filename="libgazebo_ros_imu_sensor.so">
-                <initial_orientation_as_reference>false</initial_orientation_as_reference>
-            </plugin>
-        </sensor>
-    </gazebo>
-```
-5. Launch Gazebo Simulation with turtlebot3_world.world
-
-
-Terminal 1:
-```
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.xacro)"
-```
-Terminal 2:
-```
-ros2 launch gazebo_ros gazebo.launch.py world:=/opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_world.world
-```
-Terminal 3:
-```
-ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity my_robot -x -2.0 -y -0.5
-```
-6. Move the robot
-```
-ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "linear:
-  x: 0.08
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.0"
-```
-### 2.6 Launch file for autocar in Gazebo
-> [!IMPORTANT]
-> - create a launch file "autocar_gazebo.launch"
-
-```
-<launch>
-    <let name="urdf_path" value="$(find-pkg-share autocar_description)/urdf/autocar.xacro" />
-
-    <node pkg="robot_state_publisher" exec="robot_state_publisher">
-        <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
-    </node>
-
-    <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py">
-        <arg name="world" value="$(find-pkg-share turtlebot3_gazebo)/worlds/turtlebot3_world.world" />
-    </include>
-    
-    <node pkg="gazebo_ros" exec="spawn_entity.py"
-        args=" -topic robot_description -entity my_robot -x -2.0 -y -0.5" />
-
-</launch>
-```
-> [!TIP]
-> You have learn how to teleop the turtlebot3, use the turtlebot3_teleop to move it.
 ___
 
 
@@ -593,7 +420,7 @@ You learn how to create hardware interface component by step-by-step guides.
 ```
 ros2 pkg create --build-type ament_cmake babybot_firmware
 ```
-### 3.2: Setup the babybot_firmware.hpp header file
+### 3.2: Setup the babybot_interface.hpp header file
 2. Create header file, "babybot_firmware.hpp" in the "include/babybot_firmware" folder. The header file include system_interface, node_interfaces, state and SerialPort.
 
 ```
