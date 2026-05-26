@@ -3,8 +3,8 @@
 - [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
 - [Exercise 2: Writing a Hardware Component](#exercise-2-writing-a-hardware-component)
   - [2.1: Create babybot_firmware package](#21-create-babybot-firmware-package)
-  - [2.2: Setup the babybot_firmware.hpp header file](#22-setup-the-babybot-firmware-hpp-header-file)
-  - [2.3: Implement babybot_interface.cpp source file](#23-implement-babybot-interface-cpp-source-file)
+  - [2.2: Setup the babybot_firmware.hpp header file](#22-setup-the-babybot-firmware-header-file)
+  - [2.3: Implement babybot_interface.cpp source file](#23-implement-babybot-interface-source-file)
   - [2.4: Prepare for build the package](#24-prepare-for-build-the-package)
   - [2.5: Create export definition for pluginlib](#25-create-export-definition-for-pluginlib)
   - [2.6: Build the package](#26-build-the-package)
@@ -74,8 +74,9 @@ You learn how to create hardware interface component by step-by-step guides.
 ```
 ros2 pkg create --build-type ament_cmake babybot_firmware
 ```
-### 2.2: Setup the babybot_firmware.hpp header file
+### 2.2: Setup the babybot_firmware header file
 2. Create header file, "babybot_firmware.hpp" in the "include/babybot_firmware" folder. The header file include system_interface, node_interfaces, state and SerialPort.
+> [!TIP]
 ```
 #ifndef BABYBOT_INTERFACE_HPP_
 #define BABYBOT_INTERFACE_HPP_
@@ -133,7 +134,7 @@ namespace babybot_firmware
             rclcpp::Time last_run_;
 ```
 
-### 2.3: Implement babybot_interface.cpp source file
+### 2.3: Implement babybot_interface source file
 5. Create source file, "babybot_interface.cpp" in the "src/babybot_firmware" folder.
 ```
 #include "babybot_firmware/babybot_interface.hpp"
