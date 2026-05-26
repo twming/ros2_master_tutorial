@@ -11,9 +11,9 @@
   - [2.6 Launch file for autocar in Gazebo](#26-launch-file-for-autocar-in-gazebo)
 
 - [Exercise 3: Writing a Hardware Component](#exercise-3-writing-a-hardware-component)
-  - [3.1: Create babybot_firmware package](#31-create-babybotfirmware-package)
-  - [3.2: Setup the babybot_firmware.hpp header file](#32-setup-the-babybotfirmwarehpp-header-file)
-  - [3.3: Implement babybot_interface.cpp source file](#33-implement-babybotinterfacecpp-source-file)
+  - [3.1: Create babybot_firmware package](#31-create-babybot_firmware-package)
+  - [3.2: Setup the babybot_firmware.hpp header file](#32-setup-the-babybot_firmwarehpp-header-file)
+  - [3.3: Implement babybot_interface.cpp source file](#33-implement-babybot_interfacecpp-source-file)
   - [3.4: Prepare for build the package](#34-prepare-for-build-the-package)
   - [3.5: Create export definition for pluginlib](#35-create-export-definition-for-pluginlib)
   - [3.6: Build the package](#36-build-the-package)
