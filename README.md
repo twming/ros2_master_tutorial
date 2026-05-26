@@ -159,60 +159,55 @@ namespace babybot_firmware
 
     }
 
-    /*
-    Initialize serial port to Arduino
-    */
     CallbackReturn BabybotInterface::on_init(const hardware_interface::HardwareInfo & hardware_info)
     {
-        
+        /*
+        Initialize serial port to Arduino
+        */
+
     }
 
-    /*
-    position state and velocity state
-    */
     std::vector<hardware_interface::StateInterface>BabybotInterface::export_state_interfaces()
     {
-        
+        /*
+        position state and velocity state
+        */        
     }
-
-    /*
-    the command_interface 
-    */
+    
     std::vector<hardware_interface::CommandInterface> BabybotInterface::export_command_interfaces()
     {
-         
+        /*
+        the command_interface 
+        */
+
     }
 
-    /*
-    initialize commands, positions and velocity, set the serial baudrate 
-    */
     CallbackReturn BabybotInterface::on_activate(const rclcpp_lifecycle::State &previous_state)
     {
-        
+        /*
+        initialize commands, positions and velocity, set the serial baudrate 
+        */        
     }
 
-    /*
-    deactivate serial port 
-    */
     CallbackReturn BabybotInterface::on_deactivate(const rclcpp_lifecycle::State &previous_state)
     {
-        
+        /*
+        deactivate serial port 
+        */        
     }
 
-    /*
-    read the wheel encoder reading, store in the velocity, position arrays 
-    */
     hardware_interface::return_type BabybotInterface::read(const rclcpp::Time & time, const rclcpp::Duration & period)
     {
-        
+        /*
+        read the wheel encoder reading, store in the velocity, position arrays 
+        */        
     }
 
-    /*
-    write the PMW to serial
-    */
     hardware_interface::return_type BabybotInterface::write(const rclcpp::Time & time, const rclcpp::Duration & period)
     {
-        
+        /*
+        write the PMW to serial
+        */        
     }
         
 }
