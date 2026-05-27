@@ -822,3 +822,7 @@ def generate_launch_description():
     ])
 
 ```
+```
+ros2 run controller_manager ros2_control_node --ros-args --params-file /path/to/your/controllers.yaml
+
+```
