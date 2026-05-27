@@ -3,12 +3,8 @@
 - [Exercise 1: ROS Development Setup](#exercise-1-ros-development-setup)
 
 - [Exercise 2: Simulate Robot in ROS](#exercise-2-simulate-robot-in-ros-and-gazebo)
-  - [2.1: autocar URDF and Simulation in RViz](#21-autocar-urdf-and-simulation-in-rviz)
-  - [2.2: RViz Configuration Setup and Saving](#22-rviz-configuration-setup-and-saving)
-  - [2.3: Launch file for autocar in RViz](#23-launch-file-for-autocar-in-rviz)
-  - [2.4: autocar Differential Drive and Simulation in Gazebo](#24-autocar-differential-drive-and-simulation-in-gazebo)
-  - [2.5: autocar Lidar and Imu Simulation in Gazebo](#25-autocar-lidar-and-imu-simulation-in-gazebo)
-  - [2.6 Launch file for autocar in Gazebo](#26-launch-file-for-autocar-in-gazebo)
+  - [2.1: babybot URDF and Simulation in RViz](#21-babybot-urdf-and-simulation-in-rviz)
+  - [2.2: babybot Differential Drive and Simulation in Gazebo](#22-babybot-differential-drive-and-simulation-in-gazebo)
 
 - [Exercise 3: Writing a Hardware Component](#exercise-3-writing-a-hardware-component)
   - [3.1: Create babybot_firmware package](#31-create-babybot_firmware-package)
@@ -54,9 +50,6 @@ sudo apt install -y ros-humble-turtlebot3 ros-humble-turtlebot3-simulations
 ```
 echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
 echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
-echo 'export ROS_DOMAIN_ID=30' >> ~/.bashrc
-echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
-echo 'export LDS_MODEL=LDS-01' >> ~/.bashrc
 ```
 6. Source the ROS environment
 ```
