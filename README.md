@@ -86,8 +86,6 @@ ros2 pkg create --build-type ament_cmake babybot_description
 ```
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
-    
-    <xacro:include filename="common_properties.xacro" />
 
     <!-- Material Color and Definition -->
     <material name="blue"><color rgba="0.0 0.0 0.8 1.0"/></material>
@@ -118,7 +116,6 @@ ros2 pkg create --build-type ament_cmake babybot_description
             </geometry>
             <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
         </collision>
-        <xacro:box_inertia m="5.0" l="${base_length}" w="${base_width}" h="${base_height}" xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
     </link>
 
     <link name="right_wheel_link">
@@ -135,7 +132,6 @@ ros2 pkg create --build-type ament_cmake babybot_description
             </geometry>
             <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0" />     
         </collision>
-        <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
     </link>
 
     <link name="left_wheel_link">
@@ -152,7 +148,6 @@ ros2 pkg create --build-type ament_cmake babybot_description
             </geometry>
             <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0" />     
         </collision>
-        <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
     </link>
 
     <link name="caster_wheel_link">
@@ -169,7 +164,6 @@ ros2 pkg create --build-type ament_cmake babybot_description
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />   
         </collision>
-        <xacro:sphere_inertia m="0.5" r="${wheel_radius/2.0}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
     </link>
 
     <joint name="base_footprint_base_joint" type="fixed">
