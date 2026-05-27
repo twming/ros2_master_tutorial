@@ -78,144 +78,27 @@ ___
 # Exercise 2: Simulate Robot in ROS and Gazebo
 ### 2.1: babybot URDF and Simulation in RViz
 You learn how to describe robot in URDF, create a URDF for below robots and launch it in ROS simulation.
-1. Create "autocar_description" package (ament_cmake), create "urdf" folder, then add "autocar.xacro" file to the folder.
+1. Create "babybot_description" package, create "urdf" folder, then add "babybot.urdf" file to the folder.
 ```
-ros2 pkg create --build-type ament_cmake autocar_description
+ros2 pkg create --build-type ament_cmake babybot_description
 ```
-2. Define the link of robot, including a box (body) and two cylinders (wheel) in the "autocar.xacro" file
+2. Define the link, joint, material, collision and inertia of the robot.
 ```
-<?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
-    <!-- Material Color and Definition -->
-    <material name="blue"><color rgba="0.0 0.0 0.8 1.0"/></material>
-    <material name="green"><color rgba="0.0 1.0 0.0 1.0"/></material>
-    <material name="red"><color rgba="0.8 0.0 0.0 1.0"/></material>
 
-    <!-- Propoerty parameters -->
-    <xacro:property name="size_ratio" value="___TODO___" />
-    <xacro:property name="base_length" value="___TODO___" />
-    <xacro:property name="base_width" value="___TODO___" />
-    <xacro:property name="base_height" value="___TODO___" />
-    <xacro:property name="wheel_radius" value="___TODO___" />
-    <xacro:property name="wheel_length" value="___TODO___" />
-
-    <link name="base_footprint_link" />
-
-    <link name="base_link">
-        <visual>
-            <geometry>
-                <box size="${base_length} ${base_width} ${base_height}" />
-            </geometry>
-            <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
-            <material name="green" />
-        </visual>
-        <collision>
-            <geometry>
-                <box size="${base_length} ${base_width} ${base_height}" />
-            </geometry>
-            <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
-        </collision>
-    </link>
-
-    <link name="right_wheel_link">
-        <visual>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_length}" />
-            </geometry>
-            <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-            <material name="blue" />
-        </visual>
-        <collision>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_length}" />
-            </geometry>
-            <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0" />     
-        </collision>
-    </link>
-
-    <link name="left_wheel_link">
-        <visual>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_length}" />
-            </geometry>
-            <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-            <material name="blue" />
-        </visual>
-        <collision>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_length}" />
-            </geometry>
-            <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0" />     
-        </collision>
-    </link>
-
-    <link name="caster_wheel_link">
-        <visual>
-            <geometry>
-                <sphere radius="${wheel_radius/2.0}" />
-            </geometry>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <material name="red" />
-        </visual>
-        <collision>
-            <geometry>
-                <sphere radius="${wheel_radius/2.0}" />
-            </geometry>
-            <origin xyz="0 0 0" rpy="0 0 0" />   
-        </collision>
-    </link>
-
-</robot>
 ```
-3. The dimension of body and wheels are, replace _ _TODO_ _ with below values.
-```
-size_ratio = 0.3
-base_length = ${size_ratio*0.6}
-base_width = ${size_ratio*0.4}
-base_height = ${size_ratio*0.2}
-wheel_radius = ${size_ratio*0.1}
-wheel_length = ${size_ratio*0.05}
-```
-![Robot_Dimension](https://github.com/twming/ros2_master_tutorial/blob/main/img/autocar_model.png)
-
-4. Define the joints between the wheel and body (after all the links in "autocar.xacro" file), replace _ _TODO_ _ with the correct parent and child links
-```
-    <joint name="base_footprint_base_joint" type="fixed">
-        <parent link="___TODO___" />
-        <child link="___TODO___" />
-        <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
-    </joint>
-
-    <joint name="base_right_wheel_joint" type="continuous">
-        <parent link="___TODO___" />
-        <child link="___TODO___" />
-        <origin xyz="${-base_length/4.0} ${-(base_width+wheel_length)/2.0} 0" rpy="0 0 0" />
-        <axis xyz="0 1 0" />
-    </joint>
-
-    <joint name="base_left_wheel_joint" type="continuous">
-        <parent link="___TODO___" />
-        <child link="___TODO___" />
-        <origin xyz="${-base_length/4.0} ${(base_width+wheel_length)/2.0} 0" rpy="0 0 0" />
-        <axis xyz="0 1 0" />
-    </joint>
-
-    <joint name="base_caster_wheel_joint" type="fixed">
-        <parent link="___TODO___" />
-        <child link="___TODO___" />
-        <origin xyz="${base_length/3.0}  0 ${-wheel_radius/2.0}" rpy="0 0 0" />
-    </joint>
-```
-5. Define the parent and child links
-6. Update CMakeLists.txt to install "urdf" folder. Add below lines to CMakeLists.txt
+3. Update CMakeLists.txt to install "urdf" folder. Add below lines to CMakeLists.txt
 ```
 install(
    DIRECTORY urdf 
    DESTINATION share/${PROJECT_NAME}/
 )
 ```
-7. Colcon build the package and source the setup.bash
-8. Launch it in ROS RViz using robot_state_publisher and joint_state_publisher_gui
+4. Colcon build the package and source the setup.bash
+```
+cd ~/dev_ws
+colcon build
+```
+5. Launch it in ROS RViz using robot_state_publisher and joint_state_publisher_gui
 
 > [!TIP]
 > Can you visualize your robot in ROS RViz? TF Tree, Joint_State.
@@ -233,98 +116,10 @@ Terminal 3:
 ros2 run rviz2 rviz2
 ```
 
-### 2.2: Launch file for autocar in RViz
 
-> [!IMPORTANT]
-> - It is good to run multiple nodes (robot_state_publisher, joint_state_publisher and rviz2) using a launch file.
-> - Create a launch folder and autocar_display.launch, then launch it. 
-
-1. Create a "launch" folder, then add "autocar_display.launch" file to the folder.
-2. Add the "autocar_display.launch" content as below, save the file.
+### 2.2: babybot Differential Drive and Simulation in Gazebo
+1. Add the Gazebo differential drive in the simulation. This will simulate two-wheel differential drive.
 ```
-<launch>
-    <let name="urdf_path" value="$(find-pkg-share autocar_description)/urdf/autocar.xacro" />
-    <let name="rviz_path" value="$(find-pkg-share autocar_description)/rviz/autocar.rviz" />
-    
-    <node pkg="robot_state_publisher" exec="robot_state_publisher">
-        <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
-    </node>
-
-    <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" />
-
-    <!--node pkg="rviz2" exec="rviz2" output="screen"/-->
-
-    <node pkg="rviz2" exec="rviz2" output="screen"
-        args="-d $(var rviz_path)" />
-</launch>
-```
-3. Update "rviz" and "launch" in CMakeLists.txt
-```
-install (
-  DIRECTORY urdf rviz launch
-  DESTINATION share/${PROJECT_NAME}/
-
-)
-```
-4. Colcon build and launch
-```
-ros2 launch autocar_description autocar_display.launch
-```
-### 2.4: autocar Differential Drive and Simulation in Gazebo
-1. Create "common_properties.xacro" file in urdf folder, add below for inertial simulation.
-```
-<?xml version="1.0"?>
-
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="box_inertia" params="m l w h xyz rpy">
-        <inertial>
-            <origin xyz="${xyz}" rpy="${rpy}" />
-            <mass value="${m}" />
-            <inertia ixx="${(m/12)*(h*h+l*l)}" ixy="0" ixz="0"
-                iyy="${(m/12)*(w*w+l*l)}" iyz="0"
-                izz="${(m/12)*(w*w+h*h)}" />
-        </inertial>
-    </xacro:macro>
-
-    <xacro:macro name="sphere_inertia" params="m r xyz rpy">
-        <inertial>
-            <origin xyz="${xyz}" rpy="${rpy}" />
-            <mass value="${m}" />
-            <inertia ixx="${(2*m/5)*(r*r)}" ixy="0" ixz="0"
-                iyy="${(2*m/5)*(r*r)}" iyz="0"
-                izz="${(2*m/5)*(r*r)}" /> 
-        </inertial>
-    </xacro:macro>
-
-    <xacro:macro name="cylinder_inertia" params="m r h xyz rpy">
-        <inertial>
-            <origin xyz="${xyz}" rpy="${rpy}" />
-            <mass value="${m}" />
-            <inertia ixx="${(m/12)*(3*r*r+h*h)}" ixy="0" ixz="0"
-                iyy="${(m/12)*(3*r*r+h*h)}" iyz="0"
-                izz="${(m/1)*(r*r)}" /> 
-        </inertial>
-    </xacro:macro>
-
-</robot>
-```
-2. Add below lines to the respective links after "collision" tag. These help to simulate the moment of inertia in the real-world.
-```
-<xacro:box_inertia m="5.0" l="${base_length}" w="${base_width}" h="${base_height}" xyz="0 0 ${base_height/2.0}" rpy="0 0 0" />
-
-<xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-
-<xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-
-<xacro:sphere_inertia m="0.5" r="${wheel_radius/2.0}" xyz="0 0 0" rpy="${-pi/2.0} 0 0" />
-```
-<img src="https://github.com/twming/ros2_master_tutorial/blob/main/img/collision_tag.png" alt="Inertia" width="600">
-
-3. Create "gazebo.xacro" file, add below for Gazebo differential drive simulation. This will simulate two-wheel differential drive.
-```
-<?xml version="1.0"?>
-
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <gazebo reference="base_link">
         <material>Gazebo/Green</material>
     </gazebo>
@@ -368,21 +163,14 @@ ros2 launch autocar_description autocar_display.launch
 
         </plugin>
     </gazebo>
-</robot>
+
 ```
-4. Before complete, we need to include both "common_properties.xacro" and "gazebo.xacro" in the "autocar.xacro" file.
-```
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autocar">
-    <xacro:include filename="common_properties.xacro" />
-    <xacro:include filename="gazebo.xacro" />
-</robot>
-```
-5. Colcon build the package and source the setup.bash
-6. Launch Gazebo Simulation
+2. Colcon build the package and source the setup.bash
+3. Launch Gazebo Simulation
 
 Terminal 1:
 ```
-ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share autocar_description`/urdf/autocar.xacro)"
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(xacro `ros2 pkg prefix --share babybot_description`/urdf/babybot.urdf)"
 ```
 Terminal 2:
 ```
